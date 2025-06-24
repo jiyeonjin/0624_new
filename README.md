@@ -115,6 +115,26 @@ Google Colab에서 작업한 내용을 GitHub 저장소에 직접 저장할 수 
 ### ✅ 예시 화면
 ![image](https://github.com/user-attachments/assets/71aa4189-e76c-4f14-898b-f08b866f2441)
 
+1. 웹 브라우저(chrome) 열고 **Colab 웹사이트 접속하기** :
+   이 주소를 참조하세요. -> [Colab 바로가기] (https://colab.google)
+
+2. **New Notebook** 클릭하기
+
+3.
+   ![image](https://github.com/user-attachments/assets/e4d89e2b-810b-4a6c-b100-47f8998c7243)
+
+   (1) 노트 이름 변경 -> (2) 런타임 클릭 -> (3) 런타임 유형 변경 클릭 -> T4 GPU로 변경 후 저장
+
+   ![image](https://github.com/user-attachments/assets/e9da7907-cad2-4a13-a552-a6630aec9413)
+
+4.
+   ![image](https://github.com/user-attachments/assets/38331632-fcec-4844-bc1f-c0d73831dda0)
+   빈칸에 python 코드 작성 후 디버깅 가능
+
+5.
+   ![image](https://github.com/user-attachments/assets/60c876a6-08ae-4f49-aeaf-ee81e5f39221)
+   왼쪽 상단의 파일 클릭 -> 'GitHub에 사본 저장' 클릭하면 GitHub에 생성됨
+
 ___
 
 ## 2. About Python3
