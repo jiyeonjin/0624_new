@@ -115,6 +115,47 @@ Google Colab에서 작업한 내용을 GitHub 저장소에 직접 저장할 수 
 ### ✅ 예시 화면
 ![image](https://github.com/user-attachments/assets/71aa4189-e76c-4f14-898b-f08b866f2441)
 
+___
+
+## 2. About Python3
+- [Python basic](./docs/python3.md)
+
+## 3.  data structure / data sciencs
+
+- [데이터 구조 개요](./data_structures.md)
+- [Pandas](./pandas.md)
+- [Numpy](./numpy.md)
+- [Matplotlib](./Matplotlib.md)
+
+## 4. Machine Learning
+
+- [Machine Learning Basic](./ml_basic.md)
+- [모델 훈련 및 평가](./ml_test.md)
+
+## 5. OpenCV
+
+- [OpenCV Basic](./OpenCV_basic.md)
+- [이미지 처리](./image_test.md)
+
+  
+## 6. CNN(Convolution Neural Network
+- [CNN_Basic](./CNN_basic.md)
+- [CNN_자율주행 관련 코드](./cnn_test.md)
+
+## 7. Ultralytics
+- [Ultralytics_Basic](./Ultralytics_basic.md)
+- [YOLOv8](./YOLOv8_test.md)
+- [YOLOv12](./YOLOv12_test.md)
+  
+## 8. TensorRT vs PyTorch 
+- [PyTorch_Basic](./PyTorch_basic.md)
+- [TensorRT](./TensorRT_test.md)
+- [YOLOv12](./YOLOv12_test.md)
+
+## 9. TAO Toolkit on RunPod
+- [TAO_사용법](.TAO_install.md)
+- [TAO_Toolkit](.TAO_Toolkit.md)
+
 
 
 
