@@ -42,5 +42,11 @@
    
 ![create_repository](https://github.com/user-attachments/assets/8c2eb16b-8dfc-465a-88cd-d35770d12df0)
 
+## Markdown 문법
+
+
+
+## Colab 기초
+![image](https://github.com/user-attachments/assets/7bfdb17b-9994-43e7-8e00-d3d4c07b5fb1)
 
 
