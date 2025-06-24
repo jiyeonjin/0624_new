@@ -42,7 +42,30 @@
    
 ![create_repository](https://github.com/user-attachments/assets/8c2eb16b-8dfc-465a-88cd-d35770d12df0)
 
-## Markdown 문법
+## ✏ Markdown 문법 정리
+ 
+### 📌 제목 (Headers)
+
+# H1  
+## H2  
+### H3  
+#### H4  
+##### H5  
+###### H6
+
+### 글자 꾸미기
+
+**굵게**   
+
+*기울임*    
+
+~~취소선~~  
+
+`인라인 코드`  
+
+> 인용문
+
+
 
 
 
