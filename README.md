@@ -107,6 +107,8 @@ Google Colab에서 작업한 내용을 GitHub 저장소에 직접 저장할 수 
 ---
 
 ### ✅ 예시 화면
+![image](https://github.com/user-attachments/assets/71aa4189-e76c-4f14-898b-f08b866f2441)
+
 
 
 
