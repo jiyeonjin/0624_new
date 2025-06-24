@@ -69,11 +69,6 @@ ___
 ### 📌 이미지 가져오기
 ![이미지 설명](https://example.com/image.png)
 
-### 📌 HTML 사용하기
-<b>굵게</b>  
-<i>기울임</i>  
-<br> 줄바꿈  
-<hr> 수평선
 
 ### 📌 Task Table
 | 기능 | 완료 여부 |
