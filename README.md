@@ -69,7 +69,11 @@ ___
 > 인용문
 
 ### 📌 이미지 가져오기
-![이미지 설명](https://example.com/image.png)
+1. 이미지 캡쳐 후 다른 이름으로 저장 -> 이미지 드래그
+2. Ctrl C + Ctrl V 이용해서 붙이기
+3. url 복사하고 붙여넣기 이용
+4. ![image](https://github.com/user-attachments/assets/0ccccaff-a940-4b5f-b55a-95c8e436e8ea)
+
 
 
 ### 📌 Task Table
