@@ -17,6 +17,8 @@ if True:
 대소문자 구분
 Python은 대소문자를 구분합니다
 Print와 print는 완전히 다른 것
+![image](https://github.com/user-attachments/assets/3218ddd5-cf0d-427a-9f5b-756577673749)
+
 # 잘못된 예
 # 올바른 예
 Print("Hello")  # 에러! (대문자 P)
