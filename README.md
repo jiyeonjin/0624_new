@@ -143,7 +143,7 @@ https://docs.google.com/document/d/19VkSDEzg3EgwLROp6Z0-3Bdayx0T_X4vmB3hQZFbOxY/
 
 ## 3.  data structure / data sciencs
 
-- [데이터 구조 개요](./data_structures.md)
+- [데이터 구조 개요](./data_structures.md) 
 - [Pandas](./pandas.md)
 - [Numpy](./numpy.md)
 - [Matplotlib](./Matplotlib.md)
