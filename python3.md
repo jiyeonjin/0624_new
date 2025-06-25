@@ -21,8 +21,7 @@ Print와 print는 완전히 다른 것
 
 # 잘못된 예
 # 올바른 예
-Print("Hello")  # 에러! (대문자 P)
-print("Hello")  # 올바름
+![image](https://github.com/user-attachments/assets/0aae2bce-bcce-44eb-a667-19fdafefde2a)
 
 
 
@@ -35,34 +34,18 @@ print("Hello")  # 올바름
 예약어 사용 불가
 # 잘못된 변수명
 # 올바른 변수명
-2name = "John"     # 숫자로 시작
-my-name = "John"   # 하이픈 사용
-class = "A"        # 예약어 사용
-name2 = "John"
-my_name = "John"
-class_name = "A"
+![image](https://github.com/user-attachments/assets/d0e842b2-c415-49f6-911b-c5b40aa83bf0)
+![image](https://github.com/user-attachments/assets/9733a8cf-5505-426f-964f-12e342017a38)
+
+
 
 
 문자열 처리 주의사항
 # 따옴표 주의
-# 잘못된 경우
-# 올바른 경우
-text = "She said "Hello""  # 에러!
-text = "She said \"Hello\""  # 올바름
-text = 'She said "Hello"'   # 올바름
-
-
+![image](https://github.com/user-attachments/assets/e44f5c36-76b9-42e7-9e46-63578fce608e)
 
 # 문자열과 숫자 연산
-# 잘못된 경우
-# 올바른 경우
-age = 25
-print("나이: " + age)   # 에러! 타입 불일치
-age = 25
-print("나이: " + str(age))   # 올바름
-print(f"나이: {age}")        # 올바름 (f-string)
-
-
+![image](https://github.com/user-attachments/assets/d8d6bd12-8c7c-422a-9ff8-6dcc09b4b9c1)
 
 
 
