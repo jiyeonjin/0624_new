@@ -139,6 +139,7 @@ ___
 
 ## 2. About Python3
 - [Python basic](./python3.md)
+- 클래스 정의 애니메이션 -> https://claude.ai/public/artifacts/a11af36d-c9fa-4366-9580-379644d1af5d
 
 ## 3.  data structure / data sciencs
 
