@@ -20,6 +20,8 @@
 ```bash
 pip install numpy
 
+---
+
 
 ## Numpy의 핵심 : 배열
 import numpy as np
