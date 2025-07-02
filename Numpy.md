@@ -30,7 +30,7 @@ pip install numpy
 ## 💡 NumPy의 핵심: 배열(ndarray)
 NumPy의 가장 중요한 기능은 배열(ndarray) 입니다.
 기본 파이썬 리스트보다 훨씬 빠르고, 수학 계산에 최적화된 구조입니다.
-아래는 Numpy의 기본적인 틀
+아래는 Numpy의 기본적인 틀입니다.
 
 ```bash
 import numpy as np
@@ -43,6 +43,8 @@ b = np.array([[1, 2], [3, 4]])      # 2차원 배열
 ## 🔑 NumPy 필수 개념 정리
 
 ### ✅ 배열 만들기
+가장 먼저 배워야 할 배열 생성 방법은 np.array()입니다.
+이건 리스트나 튜플을 배열로 바꿔주는 함수입니다.
 
 np.array([1, 2, 3])           # 리스트 → 배열
 
