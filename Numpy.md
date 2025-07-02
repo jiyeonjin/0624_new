@@ -6,7 +6,7 @@
 
 ---
 
-## 🔷 NumPy란?
+## 💡 NumPy란?
 
 **NumPy (Numerical Python)** 는 **숫자 계산**과 **배열 연산**을 빠르고 쉽게 할 수 있도록 도와주는 파이썬 라이브러리입니다.
 "많은 숫자를 빠르고 쉽게 계산하게 도와주는 도구!"
@@ -26,7 +26,7 @@ pip install numpy
 
 
 
-## 🧠 NumPy의 핵심: 배열(ndarray)
+## 💡 NumPy의 핵심: 배열(ndarray)
 NumPy의 가장 중요한 기능은 배열(ndarray) 입니다.
 기본 파이썬 리스트보다 훨씬 빠르고, 수학 계산에 최적화된 구조입니다.
 
