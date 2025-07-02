@@ -2,7 +2,7 @@
 
 > 이 파일은 NumPy에 대해 처음 배우는 사람을 위해 작성되었습니다.
 
-> https://www.w3schools.com/python/numpy/default.asp W3schools Numpy 튜토리얼
+> W3schools Numpy 튜토리얼 - https://www.w3schools.com/python/numpy/default.asp 
 
 ---
 
