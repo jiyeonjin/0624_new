@@ -111,8 +111,8 @@ plt.plot(x, y, marker='o', linestyle='None')  # 점만 표시되고 선은 없�
 | HEX 코드     | `'#FF5733'`, `'#00CED1'`      | 웹 색상 코드 (HTML/CSS 스타일)         |
 | RGB 튜플     | `(1.0, 0.4, 0.6)`             | 0~1 사이의 실수 3개로 구성된 RGB 값     |
 
-## 🔵 Matplotlib 선 스타일(Line Style) 정리표
 
+## 🔵 Matplotlib 선 스타일(Line Style) 정리표
 ### 📌 선 스타일은 어떤 역할을 하나요?
 
 - 선 스타일은 **그래프에 표시되는 선의 모양을 정의**합니다.
@@ -130,7 +130,7 @@ plt.plot(x, y, marker='o', linestyle='None')  # 점만 표시되고 선은 없�
 | `':'`       | dotted         | ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯              | 점만 이어진 선               |
 | `'None'`    | none           | (선 없음)                  | 선 없이 마커만 표시할 때 사용 |
 
----
+
 
 ### 📎 예시 코드
 ```bash
