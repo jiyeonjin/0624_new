@@ -1,4 +1,4 @@
-# 🧪 Python Matplotlib 기초 정리 (by W3Schools 기준)
+# 🧪 Python Matplotlib 가이드
 
 > 📊 **Matplotlib**은 파이썬에서 가장 널리 사용되는 시각화 도구입니다.  
 > 데이터를 시각적으로 표현하여 더 쉽게 이해할 수 있게 만들어 줍니다.
