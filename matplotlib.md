@@ -47,7 +47,7 @@ plt.plot(x, y, marker='o', linestyle='--', color='r')
 ```
 ---
 
-### 🔵 Matplotlib Marker 종류 정리표
+## 🔵 Matplotlib Marker 종류 정리표
 ### 📌 마커는 어떤 역할을 하나요?
 
 - **선 그래프에서 각 데이터 점을 명확하게 구분**해 주는 역할을 합니다.
@@ -88,7 +88,7 @@ plt.plot(x, y, marker='o', linestyle='None')  # 점만 표시되고 선은 없�
 
 ---
 
-### 🔵 Matplotlib 색상(Color) 종류 정리표
+## 🔵 Matplotlib 색상(Color) 종류 정리표
 ### 📌 색상(Color)은 어떤 역할을 하나요?
 
 - **그래프에서 서로 다른 데이터 시리즈를 시각적으로 구분**할 수 있게 해줍니다.
