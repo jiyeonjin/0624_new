@@ -30,12 +30,28 @@
 
 ## 📚 사용하는 주요 라이브러리
 
-| 라이브러리 | 설명 |
-|------------|------|
-| `opencv-python` (`cv2`) | OpenCV의 Python 바인딩 |
-| `numpy` | 이미지 = Numpy 배열, 수치 계산 필수 |
-| `matplotlib` | 이미지 시각화 및 디버깅 |
-| `Pillow` | 이미지 저장/포맷 변환에 사용 (선택) |
+# 📦 OpenCV 관련 라이브러리 정리표
+
+| 라이브러리 이름           | 설명                                                                 | 설치 명령어                          |
+|---------------------------|----------------------------------------------------------------------|--------------------------------------|
+| **opencv-python**         | 이미지/영상 처리 및 컴퓨터 비전 기능을 제공하는 핵심 라이브러리         | `pip install opencv-python`         |
+| **opencv-contrib-python** | 추가 모듈 포함 (SIFT, SURF, ARUCO 등 고급 기능 사용 시 필요)            | `pip install opencv-contrib-python` |
+| **numpy**                 | 이미지 데이터를 배열로 처리 (OpenCV 이미지 = NumPy 배열)               | `pip install numpy`                 |
+| **matplotlib**            | 이미지 시각화에 사용 (OpenCV는 BGR, matplotlib은 RGB 방식 사용)       | `pip install matplotlib`            |
+| **pillow (PIL)**          | 이미지 파일을 열고 저장할 수 있는 라이브러리                           | `pip install pillow`                |
+| **scikit-learn**          | 머신러닝 알고리즘 (SVM, RandomForest 등) 적용에 사용                    | `pip install scikit-learn`          |
+| **scipy**                 | 고급 수학 연산, 필터링, 거리 계산 등에 사용                             | `pip install scipy`                 |
+| **matplotlib.font_manager** | 폰트 설정을 위한 서브모듈 (matplotlib 내부 모듈)                        | 포함됨 (`matplotlib` 설치 시 함께 설치됨) |
+| **io** (표준 모듈)        | 바이트 기반 이미지 데이터를 처리 (Colab 파일 업로드 시 사용)           | 파이썬 기본 제공                    |
+| **google.colab.files**    | Colab 환경에서 파일 업로드 UI 제공                                     | Colab 환경에 기본 내장              |
+| **PIL.Image**             | Pillow의 서브모듈, 이미지 포맷 변환 및 처리                            | `pip install pillow`                |
+
+---
+
+✅ 추천 설치 명령어 (한 줄로 설치):
+
+```bash
+pip install opencv-python numpy matplotlib pillow scikit-learn scipy
 
 ```bash
 pip install opencv-python numpy matplotlib pillow
