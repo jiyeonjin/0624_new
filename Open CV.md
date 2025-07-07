@@ -498,4 +498,8 @@ if __name__ == "__main__":
 hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
 mask = cv2.inRange(hsv, lower, upper)
 ratio = countNonZero(mask) / total_pixels
+```
+
+## 애니메이션 참고
+> https://claude.ai/public/artifacts/39cc3eb1-891d-430e-a1d1-84538eb45522
 
