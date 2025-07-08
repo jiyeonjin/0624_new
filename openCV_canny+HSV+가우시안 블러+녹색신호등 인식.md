@@ -3,7 +3,7 @@
 ## 기존 신호등 인식 코드
 > https://colab.research.google.com/drive/1QftS54mhghhs3xLfIMBABcxz6Oq0q5lK#scrollTo=-NfuZzAOnlsv
 
-## 기존 코드 분석 결과
+# 기존 코드 분석 결과
 
 ### 🚦 신호등 인식 프로그램 (Python + OpenCV)
 
@@ -168,6 +168,60 @@ def draw_detections(image, detections):
 
 -----------------------
 
+# 검출된 신호등에 초록색 박스 그리기 + 10등분 격자선 추가하는 코드
+
+## `draw_detections()` 함수
+
+> 신호등 검출 결과를 시각적으로 표현하고, 선택적으로 **10x10 격자**와 **격자 번호**까지 그려주는 함수 기존 코드 아래 부분에 추가하기
+
+---
+
+### 🔧 함수 정의
+
+```python
+def draw_detections(image, detections, draw_grid=True):
+    result = image.copy()
+    
+    # 격자선 그리기
+    if draw_grid:
+        height, width = image.shape[:2]
+        
+       
+        
+        # 가로선 (10등분)
+        for i in range(1, 10):
+            y = int(height * i / 10)
+            cv2.line(result, (0, y), (width, y), (255, 255, 255), 1)  # 흰색 가로선
+        
+        # 격자 번호 추가 (구역 표시)
+        for i in range(10):
+            for j in range(10):
+                x_center = int(width * (j + 0.5) / 10)
+                y_center = int(height * (i + 0.5) / 10)
+                grid_number = i * 10 + j + 1
+                cv2.putText(result, str(grid_number), (x_center - 10, y_center + 5),
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+    
+    # 신호등 검출 박스 그리기
+    for i, (x, y, w, h) in enumerate(detections):
+        cv2.rectangle(result, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        cv2.putText(result, f'Traffic Light {i+1}', (x, y-10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+        
+        # 각 신호등이 어느 격자에 위치하는지 표시
+        center_x = x + w // 2
+        center_y = y + h // 2
+        height, width = image.shape[:2]
+        
+        grid_col = int(center_x * 10 / width)
+        grid_row = int(center_y * 10 / height)
+        grid_number = grid_row * 10 + grid_col + 1
+        
+        cv2.putText(result, f'Grid: {grid_number}', (x, y + h + 20),
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 1)
+    
+    return result
+```
 
 
 
