@@ -221,14 +221,18 @@ def draw_detections(image, detections, draw_grid=True):
     
     return result
 ```
-## 기존 코드에서 `draw_detections()` 함수 추가 후 출력 결과
+# 기존 코드에서 `draw_detections()` 함수 추가 후 출력 결과
 > 위의 많은 유리창까지 같이 검출되므로 코드 수정 필요
 ![image](https://github.com/user-attachments/assets/385b10fe-109d-4f41-b1ea-61f1d1e5d67c)
 
+---
 
-## 신호등 3개만 검출되는 최종 수정 코드와 기존 코드 차이점 분석한 코드
+
+# 신호등 3개만 검출되는 최종 수정 코드와 기존 코드 차이점 분석한 코드
 ### Google Colab에서 difflib를 사용하였습니다. Colab에서 확인
+
 > 빨강색 표시 : 기존 코드에서 삭제된 부분 표시, 노랑색 부분 : 추가되거나 변경된 부분 표시
+
 > 다음 링크에서 우측 상단의 파일 -> code_diff.html 파일 다운로드 -> 웹브라우저로 확인
 ![image](https://github.com/user-attachments/assets/4dcd2389-21ef-4603-9fbf-ff1ca3bed0c2)
 
