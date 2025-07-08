@@ -28,10 +28,117 @@
 #### 1️⃣ 라이브러리 불러오기
 
 ```python
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+import cv2 # 이미지 처리용
+import numpy as np # 이미지 배열 처리
+import matplotlib.pyplot as plt # 이미지 시각화
 from google.colab import files
 from PIL import Image
-import io
+import io # 이미지 업로드 및 읽기
 ```
+
+#### 2️⃣ 신호등 검출 함수: `detect_traffic_light_canny()`
+
+사진에서 신호등(빨강/노랑/초록/파랑)을 찾아내는 핵심 함수입니다.  
+HSV 색상 필터링 + Canny 엣지 검출 + 윤곽선 조건 판단을 통해 신호등만 골라냅니다.
+
+---
+
+#### 처리 순서 요약
+
+| 단계 | 설명 | 함수/기능 |
+|------|------|-----------|
+| Step 0 | HSV 색상 필터링 (빨강/노랑/초록/파랑) | `cv2.cvtColor`, `cv2.inRange`, `cv2.bitwise_or` |
+| Step 1 | 필터링 결과를 흑백으로 변환 | `cv2.cvtColor(..., COLOR_BGR2GRAY)` |
+| Step 2 | GaussianBlur로 노이즈 제거 | `cv2.GaussianBlur()` |
+| Step 3 | Canny 엣지 검출 (경계선 강조) | `cv2.Canny()` |
+| Step 4 | 윤곽선(contour) 찾기 | `cv2.findContours()` |
+| Step 5 | 윤곽선 필터링 (면적, 위치, 비율, 원형성) | `cv2.contourArea()`, `cv2.boundingRect()` 등 |
+
+---
+
+##### 🎯 Step 5 – 조건 필터링 기준
+
+| 조건명 | 기준 | 설명 |
+|--------|------|------|
+| 면적 (`area`) | `min_area` ~ `max_area` | 너무 작거나 너무 큰 객체는 제외 |
+| 위치 (`y`) | 상단 70% 이내만 허용 | 하단 30%에 있는 객체는 제외 (신호등은 보통 위에 있음) |
+| 종횡비 (`aspect_ratio = w/h`) | ≤ 0.8 | 신호등은 보통 세로로 김 |
+| 원형성 (`circularity`) | ≥ 0.25 (기본값) | `4π × 면적 / 둘레²` 값. 원형에 가까울수록 1에 가까움 |
+
+---
+
+#### ✅ 반환값
+
+- `traffic_lights`: 신호등으로 판단된 `(x, y, w, h)` 좌표 리스트
+- `edges`: 중간에 계산된 Canny 엣지 이미지
+
+```python
+return traffic_lights, edges
+```
+
+#### 3️⃣ 결과 시각화 함수: `draw_detections()`
+
+신호등으로 검출된 객체들에 대해 이미지 위에 **사각형과 라벨 텍스트를 그리는 함수**입니다.  
+최종 결과 이미지를 사용자에게 시각적으로 보여줄 수 있게 만듭니다.
+
+---
+
+#### 🧠 함수 정의
+
+```python
+def draw_detections(image, detections):
+    result = image.copy()
+    for i, (x, y, w, h) in enumerate(detections):
+        cv2.rectangle(result, (x, y), (x + w, y + h), (0, 255, 0), 2) # 사각형 색상 - 초록색
+        cv2.putText(result, f'Traffic Light {i+1}', (x, y-10), # 텍스트 위치 - 박스 위쪽 여백
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1) # 폰트, 텍스트 크기
+    return result
+```
+#### 4️⃣ 색상 필터링 비교 함수: `compare_with_without_color()`
+
+> 색상 필터링을 **사용한 경우와 사용하지 않은 경우**의 신호등 인식 성능을 비교하는 함수입니다.
+
+---
+
+### 📋 주요 목적
+
+| 항목 | 설명 |
+|------|------|
+| 테스트 | 같은 이미지로 두 방식(Canny만 vs 색상 필터링+Canny)을 비교 |
+| 시각화 | 두 결과를 한 화면에 나란히 시각화 |
+| 평가 | 어떤 방법이 더 정확하게 검출하는지 판단 |
+
+---
+
+##### 처리 순서 요약
+
+1. Google Colab에서 이미지 업로드
+2. 색상 필터링 **사용하지 않음** → `detect_traffic_light_canny(..., use_color_filter=False)`
+3. 색상 필터링 **사용함** → `detect_traffic_light_canny(..., use_color_filter=True)`
+4. `draw_detections()`로 결과 이미지 생성
+5. `matplotlib`으로 두 결과 나란히 비교
+
+---
+
+
+#### 4️⃣ 파라미터 비교 함수 : `adjust_parameters_and_test()`
+
+##### ⚙️ 파라미터 비교 설정표 (adjust_parameters_and_test)
+
+다양한 조건에서 신호등 인식 성능을 테스트할 수 있도록  
+각 파라미터 세트를 미리 정의해 두었습니다.
+
+| 테스트 이름 | `min_area` | `max_area` | `canny_low` | `canny_high` | `circularity_threshold` | 특징 |
+|-------------|------------|------------|-------------|--------------|--------------------------|------|
+| 기본값       | 100        | 5000       | 50          | 150          | 0.30                     | 평균적인 조건 |
+| 더 민감하게   | 50         | 10000      | 30          | 120          | 0.20                     | 더 작은 객체도 탐지 |
+| 더 엄격하게   | 200        | 8000       | 70          | 200          | 0.40                     | 정확도 우선, 작은 물체 배제 |
+| 큰 신호등용   | 500        | 15000      | 40          | 160          | 0.25                     | 대형 신호등에 적합 |
+
+
+
+
+
+
+
+
