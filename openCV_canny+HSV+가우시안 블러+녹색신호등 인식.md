@@ -169,10 +169,9 @@ def draw_detections(image, detections):
 -----------------------
 
 # 검출된 신호등에 초록색 박스 그리기 + 10등분 격자선 추가하는 코드
-
 ## `draw_detections()` 함수
-
-> 신호등 검출 결과를 시각적으로 표현하고, 선택적으로 **10x10 격자**와 **격자 번호**까지 그려주는 함수 기존 코드 아래 부분에 추가하기
+> 신호등 검출 결과를 시각적으로 표현하고, 선택적으로 **10x10 격자**와 **격자 번호**까지 그려주는 함수이다.
+> 기존 코드 아래 부분에 추가하기
 
 ---
 
@@ -222,6 +221,12 @@ def draw_detections(image, detections, draw_grid=True):
     
     return result
 ```
+## 출력 결과
+![image](https://github.com/user-attachments/assets/385b10fe-109d-4f41-b1ea-61f1d1e5d67c)
+
+
+
+
 
 
 
