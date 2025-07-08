@@ -155,7 +155,7 @@ def draw_detections(image, detections):
 
 ---
 
-##### ⚙️ 사용 파라미터 (최적화된 값)
+##### ⚙️ 사용 파라미터 (최적화된 값), 격자의 숫자가 의미하는 바?
 
 | 파라미터 | 값 | 설명 |
 |----------|-----|------|
@@ -165,6 +165,8 @@ def draw_detections(image, detections):
 | `canny_high` | 120 | Canny 경계 상한값 |
 | `circularity_threshold` | 0.25 | 원형성 기준 |
 | `use_color_filter` | `True` | 색상 필터링 활성화 (빨강, 노랑, 초록, 파랑) |
+
+-----------------------
 
 
 
