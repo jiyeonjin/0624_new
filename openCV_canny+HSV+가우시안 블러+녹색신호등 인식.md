@@ -221,8 +221,11 @@ def draw_detections(image, detections, draw_grid=True):
     
     return result
 ```
-## 출력 결과
+## 기존 코드에서 `draw_detections()` 함수 추가 후 출력 결과
 ![image](https://github.com/user-attachments/assets/385b10fe-109d-4f41-b1ea-61f1d1e5d67c)
+> 위의 많은 유리창까지 같이 검출되므로 코드 수정 필요
+
+
 
 
 
