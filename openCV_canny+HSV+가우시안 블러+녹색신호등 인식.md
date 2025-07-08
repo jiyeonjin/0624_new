@@ -227,12 +227,16 @@ def draw_detections(image, detections, draw_grid=True):
 
 
 ## 신호등 3개만 검출되는 최종 수정 코드와 기존 코드 차이점 분석한 코드
-### Google Colab에서 difflib를 사용하였습니다.
+### Google Colab에서 difflib를 사용하였습니다. Colab에서 확인
 > 빨강색 표시 : 기존 코드에서 삭제된 부분 표시, 노랑색 부분 : 추가되거나 변경된 부분 표시
-file:///C:/Users/nnykw/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/code_diff.html
+> 다음 링크에서 우측 상단의 파일 -> code_diff.html 파일 다운로드 -> 웹브라우저로 확인
+![image](https://github.com/user-attachments/assets/4dcd2389-21ef-4603-9fbf-ff1ca3bed0c2)
 
-> Colab에서 확인하기
-> https://colab.research.google.com/drive/1IwMcPrz7X8No26q_wjorPIPCdbO95oWF?authuser=0#scrollTo=qu0NzLO9AQzB&uniqifier=3
+https://colab.research.google.com/drive/1IwMcPrz7X8No26q_wjorPIPCdbO95oWF?authuser=0#scrollTo=qu0NzLO9AQzB&uniqifier=3
+
+### 최종 수정 코드 출력 결과
+![image](https://github.com/user-attachments/assets/9275126e-f069-4fb2-8f51-15961c5d9095)
+
 
 
 
