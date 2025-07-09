@@ -247,6 +247,8 @@ https://colab.research.google.com/drive/1IwMcPrz7X8No26q_wjorPIPCdbO95oWF?authus
 
 # 다른 방법으로 코드 수정
 ![image](https://github.com/user-attachments/assets/6d3f1171-ef74-4c6e-ba2e-0198058b4989)
+결과 > ![image](https://github.com/user-attachments/assets/15aaaf99-f730-4862-ac4b-41ee8b1ff0f1)
+
 
 
 
