@@ -39,14 +39,14 @@ model = Sequential([
 - **Stride (스트라이드)**: 커널이 움직이는 간격
 - **Padding (패딩)**: 이미지 주변을 0으로 채워 사이즈 유지
 
----
+
 
 ## 📌 3. Feature Map (특징 맵)
 
 - 합성곱 결과로 나온 이미지
 - 입력 이미지보다 작고, 특정 특징(예: 윤곽선)만 남아 있음
 
----
+
 
 ## 📌 4. Activation Function (활성화 함수)
 
@@ -58,7 +58,6 @@ model = Sequential([
   - 음수는 0으로, 양수는 그대로 출력
   - 계산 빠르고 성능 좋음
 
----
 
 ## 📌 5. Pooling (풀링)
 
@@ -69,21 +68,21 @@ model = Sequential([
 - **Max Pooling**: 가장 큰 값만 가져감
 - **Average Pooling**: 평균값을 사용
 
----
+
 
 ## 📌 6. Flatten (평탄화)
 
 - 2D 이미지(행렬)을 1D 벡터로 바꿈
 - Fully Connected Layer에 넣기 전에 사용
 
----
+
 
 ## 📌 7. Fully Connected Layer (완전연결층)
 
 - 뉴런들이 모두 연결된 계층
 - 분류 결과를 최종 출력하는 부분
 
----
+
 
 ## 📌 8. Epoch / Batch / Iteration
 
@@ -93,20 +92,20 @@ model = Sequential([
 | **Batch**     | 데이터를 나눠서 학습할 때의 묶음 크기 |
 | **Iteration** | 1 epoch 안에서 배치 수만큼 반복되는 학습 |
 
----
+
 
 ## 📌 9. Overfitting / Underfitting
 
 - **Overfitting (과적합)**: 훈련 데이터에 너무 맞춰져서, 새로운 데이터에 약함
 - **Underfitting (과소적합)**: 학습이 부족해서 훈련 데이터조차 잘 못 맞춤
 
----
+
 
 ## 📌 10. Dropout (드롭아웃)
 
 - 학습 중 일부 뉴런을 랜덤하게 꺼서 과적합을 방지하는 기술
 
----
+
 
 ## 📌 11. Optimizer (최적화 기법)
 
@@ -116,7 +115,7 @@ model = Sequential([
 - **SGD**: 경사하강법 (기본)
 - **Adam**: 더 똑똑한 경사하강법 (추천)
 
----
+
 
 ## 📌 12. Loss Function (손실 함수)
 
@@ -127,14 +126,14 @@ model = Sequential([
 - **MSE (Mean Squared Error)**: 회귀 문제에서 사용
 - **Cross Entropy**: 분류 문제에서 사용
 
----
+
 
 ## 📌 13. Dataset (데이터셋)
 
 - 학습에 사용하는 입력과 정답의 모음
 - 예시: MNIST (숫자 손글씨), CIFAR-10 (작은 이미지)
 
----
+
 
 ## ✅ 예시: CNN 구조 흐름
 
@@ -154,8 +153,4 @@ model = Sequential([
 [Fully Connected]
    ↓
 [Softmax → 예측 결과]
-
-
-
-
-
+```
