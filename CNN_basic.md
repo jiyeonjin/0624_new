@@ -108,6 +108,7 @@ model = Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 model.summary()
+```
 
 # 🧩 Feature Map
 # Feature Map에서 수직 필터와 수평 필터의 역할
