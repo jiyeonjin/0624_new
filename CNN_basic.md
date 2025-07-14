@@ -112,6 +112,10 @@ model.summary()
 ---
 # 🧩 Feature Map
 # Feature Map에서 수직 필터와 수평 필터의 역할
+이미지 처리 및 컨볼루션 처리 시각화 애니메이션 : 
+https://claude.ai/public/artifacts/a3bda456-4c3f-4127-a921-21ad4c351c98
+https://claude.ai/public/artifacts/c84d6210-cc1f-4f28-8be1-3f2150ea86e2
+
 
 > CNN(합성곱 신경망)은 이미지에서 다양한 방향의 특징을 뽑아내기 위해  
 > **수직 필터(Vertical Filter)**와 **수평 필터(Horizontal Filter)**를 포함한 다양한 필터를 사용합니다.
