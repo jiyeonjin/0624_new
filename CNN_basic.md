@@ -237,6 +237,41 @@ CNN은 **여러 개의 필터를 병렬로 사용**해,
 ```
 
 
+---
+# 이외의 개념
+## 📏 Stride & Padding
+
+| 개념   | 설명 |
+|--------|------|
+| Stride | 필터가 한 번에 이동하는 칸 수 (기본 1칸) |
+| Padding| 이미지 경계 처리 방식 (same: 크기 유지, valid: 크기 축소) |
+
+> Stride가 클수록 출력 크기는 작아지고, Padding은 손실 없이 연산하기 위해 사용됨
+
+---
+
+## 🎯 Feature Map & Channel
+
+- Feature Map: 필터 결과로 나온 특징 맵  
+- Channel: 입력 이미지의 RGB 또는 CNN 내부의 깊이 차원  
+- CNN에서는 여러 Feature Map이 3D 형태로 쌓임
+
+## 🔄 Activation Function (ReLU)
+
+ReLU(Rectified Linear Unit): 음수 제거, 양수는 그대로 유지  
+비선형성을 추가해 모델의 표현력을 높임
+
+```python
+ReLU(x) = max(0, x)
+```
+
+
+
+
+
+
+
+
 
 
 
