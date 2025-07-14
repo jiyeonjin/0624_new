@@ -1,6 +1,6 @@
-# 🧠 CNN (Convolutional Neural Network) 기초 완전 정리
+# 🧠 CNN (Convolutional Neural Network) 이란?
 
-> 이미지 인식, 얼굴 검출, 자율주행까지!  
+> 이미지 인식, 얼굴 검출, 자율주행까지,
 > 컴퓨터가 **이미지를 이해**하는 데 쓰이는 핵심 딥러닝 구조가 바로 CNN입니다.
 
 ---
@@ -36,7 +36,7 @@ CNN은 이미지 같은 **2차원 데이터**를 분석하기에 최적화된 **
 - 특징 맵(feature map)을 생성
 
 🖼️ 이미지 예시:  
-![Convolution 예시](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Fd0rT6HPRaEx4sBDE9z9Vw.gif)
+![Convolution 예시](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
 
 📌 수식:  
 `이미지 ⨉ 커널 = 특징 맵 (Feature Map)`
@@ -59,7 +59,8 @@ CNN은 이미지 같은 **2차원 데이터**를 분석하기에 최적화된 **
 - 일반적으로 **Max Pooling** 사용 (가장 큰 값 선택)
 
 🖼️ Max Pooling 예시:  
-![Pooling](https://miro.medium.com/v2/resize:fit:720/format:webp/1*3n6ZBqL_OQnD4z8c5Z9yXA.gif)
+![Pooling 예시](https://upload.wikimedia.org/wikipedia/commons/9/9e/Max_pooling.png)
+
 
 ---
 
@@ -69,7 +70,7 @@ CNN은 이미지 같은 **2차원 데이터**를 분석하기에 최적화된 **
 - **Fully Connected**: 예측을 위한 마지막 일반 신경망 계층
 
 🖼️ 전체 구조 흐름:  
-![CNN 흐름](https://miro.medium.com/v2/resize:fit:1200/format:webp/1*oT_O_X4e-8vB3U5VtH6I6g.png)
+![CNN 흐름](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
 
 ---
 
