@@ -108,3 +108,41 @@ model = Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 model.summary()
+
+# 🧩 Feature Map
+# Feature Map에서 수직 필터와 수평 필터의 역할
+
+> CNN(합성곱 신경망)은 이미지에서 다양한 방향의 특징을 뽑아내기 위해  
+> **수직 필터(Vertical Filter)**와 **수평 필터(Horizontal Filter)**를 포함한 다양한 필터를 사용합니다.
+
+- Convolution 연산 결과로 생성되는 새로운 이미지
+- 입력 이미지의 **특정한 패턴(선, 모서리, 형태 등)**을 강조한 맵
+- 필터가 감지한 특징이 어디에 얼마나 강하게 나타나는지를 보여줌
+
+---
+<img width="2578" height="964" alt="image" src="https://github.com/user-attachments/assets/40c2230c-ee65-4c47-a364-0bc967b50258" />
+
+## 수직 필터 (Vertical Filter)
+<img width="2582" height="1090" alt="image" src="https://github.com/user-attachments/assets/eaa0250a-7149-4fc6-b53c-67ecc3242e2e" />
+
+- 이미지의 **세로 방향 경계(수직선, 기둥 등)**을 감지하는 데 사용
+- 예시 필터:
+  ```text
+  [-1  0  1]
+  [-2  0  2]
+  [-1  0  1]
+```
+
+
+## 수평 필터 (Horizontal Filter)
+<img width="2582" height="1094" alt="image" src="https://github.com/user-attachments/assets/0ebe6c1b-50db-470d-9b8c-959e562b5fc7" />
+
+- 수평 필터는 이미지 내 **가로 방향 경계(수평선)**를 감지하는 데 사용
+- 예시 필터:
+```text
+[-1 -2 -1]
+[ 0  0  0]
+[ 1  2  1]
+```
+
+
