@@ -126,7 +126,7 @@ model.summary()
 ## 수직 필터 (Vertical Filter)
 <img width="2582" height="1090" alt="image" src="https://github.com/user-attachments/assets/eaa0250a-7149-4fc6-b53c-67ecc3242e2e" />
 
-- 이미지의 **세로 방향 경계(수직선, 기둥 등)**을 감지하는 데 사용
+- 이미지의 **세로 방향 경계(수직선, 기둥 등)** 을 감지하는 데 사용
 - 예시 필터:
   ```text
   [-1  0  1]
@@ -138,7 +138,7 @@ model.summary()
 ## 수평 필터 (Horizontal Filter)
 <img width="2582" height="1094" alt="image" src="https://github.com/user-attachments/assets/0ebe6c1b-50db-470d-9b8c-959e562b5fc7" />
 
-- 수평 필터는 이미지 내 **가로 방향 경계(수평선)**를 감지하는 데 사용
+- 수평 필터는 이미지 내 **가로 방향 경계(수평선)** 를 감지하는 데 사용
 - 예시 필터:
 ```text
 [-1 -2 -1]
