@@ -72,7 +72,8 @@ CNN은 이미지 같은 **2차원 데이터**를 분석하기에 최적화된 **
 - **Fully Connected**: 예측을 위한 마지막 일반 신경망 계층
 
 🖼️ 전체 구조 흐름:  
-![CNN 흐름](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
+<img width="1423" height="762" alt="image" src="https://github.com/user-attachments/assets/eb52f99a-d850-48ea-82b1-33e3918c9f70" />
+
 
 ---
 
