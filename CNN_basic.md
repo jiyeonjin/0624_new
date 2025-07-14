@@ -1,4 +1,4 @@
-# 🧠 CNN (Convolutional Neural Network) 이란? 
+# 🧠 CNN (Convolutional Neural Network) 이란?
 
 > 이미지 인식, 얼굴 검출, 자율주행까지,
 > 컴퓨터가 **이미지를 이해**하는 데 쓰이는 핵심 딥러닝 구조가 바로 CNN입니다.
