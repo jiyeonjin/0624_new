@@ -159,7 +159,7 @@ model.summary()
 ```
 
 
-## 샤프닝 필터 pening Filter) - 마크다운
+## 샤프닝 필터 (pening Filter) 
 
 <img width="2600" height="1108" alt="image" src="https://github.com/user-attachments/assets/f469c759-286c-47a1-9523-2ad12bc552fc" />
 
