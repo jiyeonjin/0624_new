@@ -146,4 +146,39 @@ model.summary()
 [ 1  2  1]
 ```
 
+## 블러 필터 (Blur Filter)
+<img width="2588" height="1100" alt="image" src="https://github.com/user-attachments/assets/70deec78-16dd-4ea8-a465-44e7c638c375" />
+
+- 블러 필터는 이미지의 **디테일을 흐릿하게 만들고**, 노이즈(잡음)를 줄이는 데 사용
+- 이미지의 픽셀을 **주변 픽셀과 평균** 내어 부드럽게 만듦
+- 예시 필터:
+```text
+[1/9  1/9  1/9]
+[1/9  1/9  1/9]
+[1/9  1/9  1/9]
+```
+
+
+## 샤프닝 필터 pening Filter) - 마크다운
+
+<img width="2600" height="1108" alt="image" src="https://github.com/user-attachments/assets/f469c759-286c-47a1-9523-2ad12bc552fc" />
+
+- 샤프닝 필터는 이미지의 **경계와 윤곽을 뚜렷하게 강화** 시킴
+- 이미지의 픽셀에서 **주변과의 차이를 강조** 하고, 흐릿한 이미지를 **선명하게 보이도록** 개선
+- 예시 필터:
+```text
+[ 0  -1   0]
+[-1   5  -1]
+[ 0  -1   0]
+```
+
+## 최종 결과
+<img width="2582" height="800" alt="image" src="https://github.com/user-attachments/assets/40ed407b-d8f5-4858-8dd7-8f0116739f6c" />
+
+
+
+
+
+
+
 
