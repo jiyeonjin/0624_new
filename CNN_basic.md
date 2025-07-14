@@ -36,7 +36,8 @@ CNN은 이미지 같은 **2차원 데이터**를 분석하기에 최적화된 **
 - 특징 맵(feature map)을 생성
 
 🖼️ 이미지 예시:  
-![Convolution 예시](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
+![Convolution 예시](https://upload.wikimedia.org/wikipedia/commons/4/4c/Conv_layer.png)
+
 
 📌 수식:  
 `이미지 ⨉ 커널 = 특징 맵 (Feature Map)`
