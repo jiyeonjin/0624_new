@@ -1,4 +1,4 @@
-# YOLO (You Only Look Once) 완전 가이드
+# YOLO 가이드
 
 ## 목차
 1. [YOLO란 무엇인가?](#yolo란-무엇인가)
@@ -7,9 +7,8 @@
 4. [YOLO 버전별 특징](#yolo-버전별-특징)
 5. [YOLO의 장단점](#yolo의-장단점)
 6. [구현 및 사용법](#구현-및-사용법)
-7. [성능 비교](#성능-비교)
-8. [실제 적용 사례](#실제-적용-사례)
-9. [참고 자료](#참고-자료)
+7. [실제 적용 사례](#실제-적용-사례)
+
 
 ## YOLO란 무엇인가?
 
@@ -20,7 +19,7 @@ YOLO (You Only Look Once)는 실시간 객체 탐지(Object Detection)를 위한
 - **End-to-End 학습**: 하나의 신경망으로 전체 탐지 과정 처리
 - **단일 패스**: 이미지를 한 번만 처리하여 결과 도출
 - **다양한 객체 동시 탐지**: 한 이미지에서 여러 객체를 동시에 탐지
-
+---
 ## YOLO의 발전 과정
 
 ### 타임라인
@@ -35,7 +34,7 @@ YOLO (You Only Look Once)는 실시간 객체 탐지(Object Detection)를 위한
 2023 → YOLOv8
 2024 → YOLOv9, YOLOv10, YOLOv11
 ```
-
+---
 ## YOLO의 핵심 원리
 
 ### 1. 그리드 기반 탐지
@@ -57,40 +56,8 @@ YOLO (You Only Look Once)는 실시간 객체 탐지(Object Detection)를 위한
 ```
 Loss = λ_coord × 좌표 손실 + 객체 손실 + λ_noobj × 비객체 손실 + 분류 손실
 ```
-
+---
 ## YOLO 버전별 특징
-
-### YOLOv1 (2015)
-- **혁신점**: 객체 탐지를 단일 회귀 문제로 재정의
-- **구조**: 24개 컨볼루션 레이어 + 2개 완전연결 레이어
-- **성능**: 45 FPS, mAP 63.4% (VOC 2007)
-- **한계**: 작은 객체 탐지 어려움, 겹치는 객체 처리 제한
-
-### YOLOv2 (2016)
-- **개선사항**:
-  - Batch Normalization 추가
-  - 고해상도 분류기 사용
-  - Anchor Box 도입
-  - Dimension Clusters 사용
-- **성능**: 67 FPS, mAP 76.8% (VOC 2007)
-- **YOLO9000**: 9000개 클래스 탐지 가능
-
-### YOLOv3 (2018)
-- **주요 변화**:
-  - Darknet-53 백본 사용
-  - Feature Pyramid Network (FPN) 구조
-  - 3개 스케일에서 예측 (13×13, 26×26, 52×52)
-  - 로지스틱 분류기 사용
-- **성능**: 20 FPS, mAP 57.9% (COCO)
-
-### YOLOv4 (2020)
-- **혁신 기술**:
-  - CSPDarkNet53 백본
-  - SPP (Spatial Pyramid Pooling)
-  - PANet neck
-  - Bag of Freebies (BoF) 적용
-  - Bag of Specials (BoS) 적용
-- **성능**: 65 FPS, mAP 43.5% (COCO)
 
 ### YOLOv5 (2020)
 - **특징**:
@@ -107,7 +74,7 @@ Loss = λ_coord × 좌표 손실 + 객체 손실 + λ_noobj × 비객체 손실 
   - 향상된 데이터 증강
   - 다양한 작업 지원 (탐지, 분할, 분류)
 - **성능**: mAP 53.9% (COCO)
-
+---
 ## YOLO의 장단점
 
 ### 장점
@@ -122,7 +89,7 @@ Loss = λ_coord × 좌표 손실 + 객체 손실 + λ_noobj × 비객체 손실 
 - ❌ **겹치는 객체 처리 제한**: 한 그리드 셀에서 하나의 클래스만 예측
 - ❌ **위치 정확도**: R-CNN 계열 대비 다소 낮은 위치 정확도
 - ❌ **종횡비 변화**: 학습 데이터에 없는 종횡비 처리 어려움
-
+---
 ## 구현 및 사용법
 
 ### 1. 환경 설정
@@ -226,7 +193,7 @@ names: ['person', 'bicycle', 'car', 'motorcycle', ...]
 - **GPU**: RTX 3080 기준
 - **해상도**: 640×640 입력 기준
 - **배치 크기**: 1
-
+---
 ## 실제 적용 사례
 
 ### 1. 자율주행
@@ -249,11 +216,8 @@ names: ['person', 'bicycle', 'car', 'motorcycle', ...]
 - 경기 통계 생성
 - 실시간 경기 분석
 
-### 5. 의료 영상
-- 의료 영상에서 병변 탐지
-- X-ray, CT 스캔 분석
-- 진단 보조 도구
 
+---
 ## 최적화 기법
 
 ### 1. 모델 경량화
@@ -278,36 +242,7 @@ results = model(['image1.jpg', 'image2.jpg', 'image3.jpg'])
 - **Edge 디바이스**: TensorRT, OpenVINO 사용
 - **모바일**: Core ML, TensorFlow Lite 활용
 
-## 하이퍼파라미터 튜닝
-
-### 주요 하이퍼파라미터
-```yaml
-# 학습 설정
-epochs: 100
-batch_size: 16
-lr0: 0.01
-lrf: 0.1
-momentum: 0.937
-weight_decay: 0.0005
-warmup_epochs: 3
-warmup_momentum: 0.8
-warmup_bias_lr: 0.1
-
-# 데이터 증강
-hsv_h: 0.015
-hsv_s: 0.7
-hsv_v: 0.4
-degrees: 0.0
-translate: 0.1
-scale: 0.9
-shear: 0.0
-perspective: 0.0
-flipud: 0.0
-fliplr: 0.5
-mosaic: 1.0
-mixup: 0.0
-copy_paste: 0.0
-```
+---
 
 ## 트러블슈팅
 
@@ -341,31 +276,17 @@ copy_paste = 0.1
 # 앵커 최적화
 model.train(data='dataset.yaml', epochs=100, anchor_t=4.0)
 ```
-
-## 참고 자료
-
-### 논문
-- [YOLOv1: You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
-- [YOLOv2: YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
-- [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
-- [YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934)
+---
+## 참고 링크
 
 ### 공식 저장소
 - [YOLOv5 (Ultralytics)](https://github.com/ultralytics/yolov5)
 - [YOLOv8 (Ultralytics)](https://github.com/ultralytics/ultralytics)
-- [YOLOv4 (AlexeyAB)](https://github.com/AlexeyAB/darknet)
 
-### 유용한 도구
-- [Roboflow](https://roboflow.com/) - 데이터셋 관리 및 증강
-- [Label Studio](https://labelstud.io/) - 데이터 라벨링
-- [Weights & Biases](https://wandb.ai/) - 실험 추적
-- [TensorBoard](https://www.tensorflow.org/tensorboard) - 시각화
 
 ### 커뮤니티
 - [YOLO 공식 문서](https://docs.ultralytics.com/)
 - [PyTorch 공식 튜토리얼](https://pytorch.org/tutorials/)
-- [Computer Vision 관련 논문](https://paperswithcode.com/area/computer-vision)
 
----
 
-이 가이드는 YOLO에 대한 포괄적인 정보를 제공합니다. 실제 프로젝트에 적용할 때는 특정 요구사항에 맞게 조정하여 사용하세요.
+
