@@ -37,6 +37,189 @@ YOLO (You Only Look Once)는 실시간 객체 탐지(Object Detection)를 위한
 ---
 ## YOLO의 핵심 원리
 
+### yolo 예제 코드
+```
+!pip install ultralytics 
+from google.colab import files
+from ultralytics import YOLO # COCO 사전 훈련된 YOLOv8n 모델 로드
+model = YOLO("yolov8n.pt") # 모델 정보 표시 (선택사항)
+model.info() # COCO8 예제 데이터셋으로 100 에포크 훈련
+results = model.train(data="coco8.yaml", epochs=10, imgsz=640) # 사진 업로드하고 경로 설정
+uploaded = files.upload()
+image_path = list(uploaded.keys())[0] # 업로드한 이미지에 대해 YOLOv8n 모델로 추론 실행
+results = model(image_path)
+results[0].show()
+```
+
+> # YOLOv8 Google Colab 예제 코드 설명
+
+### 원본 코드
+```python
+!pip install ultralytics  
+from google.colab import files 
+from ultralytics import YOLO 
+
+### COCO 사전 훈련된 YOLOv8n 모델 로드 
+model = YOLO("yolov8n.pt") 
+
+### 모델 정보 표시 (선택사항) 
+model.info() 
+
+### COCO8 예제 데이터셋으로 100 에포크 훈련 
+results = model.train(data="coco8.yaml", epochs=10, imgsz=640) 
+
+### 사진 업로드하고 경로 설정 
+uploaded = files.upload() 
+image_path = list(uploaded.keys())[0] 
+
+### 업로드한 이미지에 대해 YOLOv8n 모델로 추론 실행 
+results = model(image_path) 
+results[0].show()
+```
+
+## 코드 단계별 설명
+
+### 1. 라이브러리 설치 및 import
+```python
+!pip install ultralytics
+from google.colab import files
+from ultralytics import YOLO
+```
+- **ultralytics**: YOLOv8 모델을 제공하는 라이브러리 설치
+- **google.colab.files**: Colab에서 파일 업로드/다운로드 기능 제공
+- **YOLO**: YOLOv8 모델 클래스 import
+
+### 2. 모델 로드
+```python
+model = YOLO("yolov8n.pt")
+```
+- **yolov8n.pt**: YOLOv8 Nano 모델 (가장 가벼운 버전)
+- COCO 데이터셋으로 사전 훈련된 모델 자동 다운로드
+- 80개 클래스 (사람, 자동차, 동물 등) 탐지 가능
+
+### 3. 모델 정보 표시
+```python
+model.info()
+```
+- 모델 구조, 파라미터 수, 레이어 정보 등을 출력
+- 선택사항이지만 모델 이해에 도움
+
+### 4. 모델 훈련
+```python
+results = model.train(data="coco8.yaml", epochs=10, imgsz=640)
+```
+- **data="coco8.yaml"**: COCO8 예제 데이터셋 사용 (COCO의 축소판)
+- **epochs=10**: 10번 반복 훈련
+- **imgsz=640**: 입력 이미지 크기 640×640 픽셀
+- 실제로는 파인튜닝 과정 (이미 훈련된 모델을 추가 학습)
+
+### 5. 이미지 업로드
+```python
+uploaded = files.upload()
+image_path = list(uploaded.keys())[0]
+```
+- Colab에서 파일 업로드 대화상자 표시
+- 사용자가 선택한 이미지 파일을 업로드
+- 업로드된 첫 번째 파일의 경로를 저장
+
+### 6. 객체 탐지 실행
+```python
+results = model(image_path)
+results[0].show()
+```
+- 업로드된 이미지에 대해 객체 탐지 수행
+- 탐지된 객체들을 바운딩 박스와 함께 시각화
+
+
+```
+
+## 모델 종류별 사용법
+
+### 다양한 YOLOv8 모델 크기
+```python
+# 모델 크기별 선택
+models = {
+    'nano': 'yolov8n.pt',      # 가장 빠름, 정확도 낮음
+    'small': 'yolov8s.pt',     # 빠름, 정확도 보통
+    'medium': 'yolov8m.pt',    # 보통 속도, 정확도 높음
+    'large': 'yolov8l.pt',     # 느림, 정확도 매우 높음
+    'extra_large': 'yolov8x.pt' # 가장 느림, 정확도 최고
+}
+
+# 원하는 모델 선택
+model_size = 'small'  # 원하는 크기로 변경
+model = YOLO(models[model_size])
+```
+
+## 결과 저장 및 내보내기
+
+### 결과 저장
+```python
+# 시각화 결과 저장
+results[0].save(filename='detection_result.jpg')
+
+# 원본 이미지에 결과 그리기
+annotated_img = results[0].plot()
+cv2.imwrite('annotated_result.jpg', annotated_img)
+
+# 결과 데이터를 JSON으로 저장
+import json
+
+detection_data = []
+for result in results:
+    boxes = result.boxes
+    if boxes is not None:
+        for box in boxes:
+            detection_data.append({
+                'class': model.names[int(box.cls[0])],
+                'confidence': float(box.conf[0]),
+                'bbox': box.xyxy[0].tolist()
+            })
+
+with open('detections.json', 'w') as f:
+    json.dump(detection_data, f, indent=2)
+```
+
+### Google Drive에 저장
+```python
+from google.colab import drive
+
+# Google Drive 마운트
+drive.mount('/content/drive')
+
+# 결과를 Drive에 저장
+results[0].save(filename='/content/drive/MyDrive/yolo_result.jpg')
+```
+
+
+## 성능 모니터링
+
+### 처리 시간 측정
+```python
+import time
+
+start_time = time.time()
+results = model(image_path)
+end_time = time.time()
+
+print(f"처리 시간: {end_time - start_time:.2f}초")
+```
+
+### GPU 사용량 확인
+```python
+# GPU 정보 확인
+!nvidia-smi
+
+# PyTorch에서 GPU 사용량 확인
+import torch
+print(f"GPU 사용 가능: {torch.cuda.is_available()}")
+print(f"GPU 이름: {torch.cuda.get_device_name(0)}")
+print(f"GPU 메모리 사용량: {torch.cuda.memory_allocated(0) / 1024**2:.2f} MB")
+```
+
+---
+
+
 ### 1. 그리드 기반 탐지
 - 입력 이미지를 S×S 그리드로 분할
 - 각 그리드 셀이 객체의 중심을 포함하면 해당 객체를 탐지할 책임
@@ -56,6 +239,7 @@ YOLO (You Only Look Once)는 실시간 객체 탐지(Object Detection)를 위한
 ```
 Loss = λ_coord × 좌표 손실 + 객체 손실 + λ_noobj × 비객체 손실 + 분류 손실
 ```
+
 ---
 ## YOLO 버전별 특징
 
