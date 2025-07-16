@@ -258,6 +258,95 @@ print(f"GPU 이름: {torch.cuda.get_device_name(0)}")
 print(f"GPU 메모리 사용량: {torch.cuda.memory_allocated(0) / 1024**2:.2f} MB")
 ```
 
+# > YOLO 예제 코드 실행 결과 파일 설명
+<img width="432" height="1306" alt="image" src="https://github.com/user-attachments/assets/718fa531-d836-4c84-adfb-11bac4d0de65" />
+
+
+## 📁 폴더 구조
+
+### `datasets/`
+- **역할**: 훈련에 사용된 데이터셋이 저장되는 폴더
+- **내용**: COCO8 예제 데이터셋의 이미지와 라벨 파일들
+
+### `runs/`
+- **역할**: 훈련 실행 결과가 저장되는 메인 폴더
+- **하위 폴더**: detect, train, train2, train3, train4 등
+
+## 🎯 `runs/detect/` 폴더
+- **역할**: 추론(객체 탐지) 결과가 저장되는 폴더
+- **생성 시점**: `model(image_path)` 실행 시
+
+## 🏋️ `runs/train/` 폴더 (훈련 결과)
+
+### 📊 성능 분석 그래프
+| 파일명 | 설명 |
+|--------|------|
+| `BoxF1_curve.png` | F1 점수 곡선 (정밀도와 재현율의 조화평균) |
+| `BoxPR_curve.png` | Precision-Recall 곡선 (정밀도-재현율 관계) |
+| `BoxP_curve.png` | Precision 곡선 (정밀도 변화) |
+| `BoxR_curve.png` | Recall 곡선 (재현율 변화) |
+
+### 🔍 혼동 행렬
+| 파일명 | 설명 |
+|--------|------|
+| `confusion_matrix.png` | 혼동 행렬 (예측 vs 실제 결과) |
+| `confusion_matrix_normalized.png` | 정규화된 혼동 행렬 |
+
+### 📈 라벨 분석
+| 파일명 | 설명 |
+|--------|------|
+| `labels.jpg` | 데이터셋의 라벨 분포 시각화 |
+| `labels_correlogram.jpg` | 라벨 간 상관관계 분석 |
+
+### 📊 결과 데이터
+| 파일명 | 설명 |
+|--------|------|
+| `results.csv` | 훈련 과정의 수치 결과 (에포크별 손실값, 정확도 등) |
+| `results.png` | 훈련 과정 그래프 (손실값, 정확도 변화) |
+
+### 🖼️ 훈련 배치 샘플
+| 파일명 | 설명 |
+|--------|------|
+| `train_batch0.jpg` | 첫 번째 훈련 배치 이미지 샘플 |
+| `train_batch1.jpg` | 두 번째 훈련 배치 이미지 샘플 |
+| `train_batch2.jpg` | 세 번째 훈련 배치 이미지 샘플 |
+
+### 🎯 검증 결과
+| 파일명 | 설명 |
+|--------|------|
+| `val_batch0_labels.jpg` | 검증 배치의 실제 라벨 시각화 |
+| `val_batch0_pred.jpg` | 검증 배치의 예측 결과 시각화 |
+
+### ⚙️ 설정 파일
+| 파일명 | 설명 |
+|--------|------|
+| `args.yaml` | 훈련에 사용된 모든 설정값 (에포크, 이미지 크기 등) |
+
+### 🏋️ 추가 훈련 폴더
+- `train2/`, `train3/`, `train4/`: 여러 번 훈련을 실행했을 때 생성
+- 각각 별도의 실험 결과를 저장
+
+## 📁 기타 폴더
+
+### `sample_data/`
+- **역할**: Colab에서 제공하는 샘플 데이터
+- **내용**: 예제 파일들
+
+### 🎯 모델 파일
+| 파일명 | 설명 |
+|--------|------|
+| `yolo11n.pt` | YOLO11n 모델 파일 |
+| `yolov8n.pt` | YOLOv8n 모델 파일 (코드에서 사용) |
+
+## 💡 중요한 파일들
+
+1. **results.png**: 훈련 과정을 한눈에 볼 수 있는 그래프
+2. **confusion_matrix.png**: 모델 성능 분석
+3. **val_batch0_pred.jpg**: 실제 예측 결과 확인
+4. **weights/**: 훈련된 모델의 가중치 파일들
+
+이 파일들을 통해 모델이 얼마나 잘 학습되었는지, 어떤 부분에서 실수하는지 등을 분석할 수 있습니다!
+
 ---
 
 
