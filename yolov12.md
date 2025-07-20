@@ -46,7 +46,7 @@ YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약�
 
 ## 4. 🧠 YOLOv12 구조 한눈에 보기
 
-```bash
+```text
 [입력 이미지]
       ↓
 [Backbone]
@@ -66,7 +66,7 @@ YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약�
       ↓
 [NMS (후처리)]
 - Weighted NMS 또는 Soft-NMS 적용
-
+```
 ---
 
 ## 5. 🧩 YOLOv12에서 자주 쓰이는 용어
