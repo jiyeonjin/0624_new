@@ -46,7 +46,7 @@ YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약�
 
 ## 4. 🧠 YOLOv12 구조 한눈에 보기
 
-```txt
+```bash
 [입력 이미지]
       ↓
 [Backbone]
@@ -88,8 +88,9 @@ YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약�
 ---
 
 ##6. ⚙️ YOLOv12 기본 사용법
+
 1.
-```
+```bash
 from ultralytics import YOLO
 
 model = YOLO('yolov12n.pt')  # nano 모델 (초경량)
