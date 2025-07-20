@@ -99,6 +99,7 @@ results = model.predict(source='your_video.mp4', save=True)
 
 2.
 yolov12n.pt 파일 다운로드 링크 -> https://github.com/sunsmarterjie/yolov12
+
 Colab에서 객체 인식 영상 다운로드 코드 확인하기 -> https://colab.research.google.com/drive/1RYPaX_kUDaZsczDX9uMruM9xO0AjohMd#scrollTo=KuQzW3IwyAc2
 
 
