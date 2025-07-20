@@ -111,6 +111,8 @@ results.show()  # 결과 시각화
 ```
 
 2. yolov11n.pt 파일 다운받는 깃허브 링크 -> https://github.com/ultralytics/ultralytics
+   <img width="1296" height="450" alt="image" src="https://github.com/user-attachments/assets/b2b8e61a-fcbd-48f0-b243-33c42e7c5ff1" />
+
 3. Colab에서 확인하기 -> https://colab.research.google.com/drive/1P3frk0hH18uVFdbn2x9uLC0c9DDmU0ub
 
 
