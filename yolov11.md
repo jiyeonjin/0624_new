@@ -98,6 +98,7 @@ YOLOv11은 기존의 CNN 기반에 **Transformer 요소**를 추가한 하이브
 
 ## 7. 💻 사용 예시 (Python + Ultralytics)
 
+1.
 ```python
 # YOLOv11 설치 (예: ultralytics 팀이 제공할 경우)
 !pip install yolov11
@@ -108,5 +109,9 @@ model = YOLO("yolov11.pt")  # 사전 학습된 모델 로드
 results = model("image.jpg")  # 이미지 추론
 results.show()  # 결과 시각화
 ```
+
+2. yolov11n.pt 파일 다운받는 깃허브 링크 -> https://github.com/ultralytics/ultralytics
+3. Colab에서 확인하기 -> https://colab.research.google.com/drive/1P3frk0hH18uVFdbn2x9uLC0c9DDmU0ub
+
 
 
