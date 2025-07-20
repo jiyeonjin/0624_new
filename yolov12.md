@@ -1,4 +1,4 @@
-# YOLOv12 완벽 정리 (2025년 기준)
+# YOLOv12 내용 정리
 
 YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약한 **초고속·고정확도** 알고리즘입니다. YOLO 시리즈는 "You Only Look Once"의 줄임말로, 한 번의 딥러닝 연산으로 이미지 속 객체를 빠르게 탐지합니다.
 
@@ -88,10 +88,18 @@ YOLOv12는 객체 감지(Object Detection) 분야에서 최신 기술을 집약�
 ---
 
 ##6. ⚙️ YOLOv12 기본 사용법
+1.
 ```
 from ultralytics import YOLO
 
 model = YOLO('yolov12n.pt')  # nano 모델 (초경량)
 results = model.predict(source='your_video.mp4', save=True)
 ```
+
+2.
+yolov12n.pt 파일 다운로드 링크 -> https://github.com/sunsmarterjie/yolov12
+Colab에서 객체 인식 영상 다운로드 코드 확인하기 -> https://colab.research.google.com/drive/1RYPaX_kUDaZsczDX9uMruM9xO0AjohMd#scrollTo=KuQzW3IwyAc2
+
+
+
 
