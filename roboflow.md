@@ -66,7 +66,31 @@
 1. 생성된 버전 클릭
 2. [Download Dataset] 클릭
 3. Format: `YOLOv8 PyTorch` 선택
-4. [Download ZIP] 클릭
+4. [Download ZIP] 클릭 -> API Key 복사해두기
+
+## 🔐 Roboflow API Key란?
+
+**Roboflow API Key**는 사용자가 Roboflow 플랫폼에서 모델, 데이터셋, 프로젝트 등의 기능에 **프로그래밍 방식으로 접근**할 수 있도록 인증하는 **개인 고유 토큰**입니다.  
+이를 통해 Python 코드 또는 외부 애플리케이션에서 Roboflow의 모델을 **불러오거나 예측 요청을 수행**할 수 있습니다.
+
+> ✅ API Key는 비밀번호처럼 **외부에 노출되지 않도록 주의**해야 합니다.
+
+---
+
+## 🛠️ Roboflow API Key 생성 방법
+
+1. Roboflow에 로그인  
+   👉 https://roboflow.com
+
+2. 우측 상단 프로필 아이콘 클릭  
+   → `Settings` (또는 `Account`)
+
+3. 좌측 메뉴에서 **"Roboflow API"** 선택
+
+4. **"Create API Key"** 또는 기존 키 복사  
+   → 생성된 키는 아래와 같이 생김:
+
+---
 
 압축 파일에는 다음이 포함됩니다:
 
