@@ -135,3 +135,230 @@ Roboflow에서 YOLOv8 형식으로 내보낸 데이터셋은 다음과 같은 �
 - [x] 중복 객체는 모두 개별 라벨링
 
 ---
+
+# YOLOv8 객체 감지 모델 훈련 과정 정리
+
+## 📋 목차
+1. [프로젝트 개요](#프로젝트-개요)
+2. [Roboflow를 이용한 데이터 준비](#roboflow를-이용한-데이터-준비)
+3. [YOLOv8 훈련 환경 설정](#yolov8-훈련-환경-설정)
+4. [모델 훈련 실행](#모델-훈련-실행)
+5. [결과 및 평가](#결과-및-평가)
+6. [실제 사용 예제](#실제-사용-예제)
+
+---
+
+## 🎯 프로젝트 개요
+
+### 목표
+- YOLOv8을 사용한 커스텀 객체 감지 모델 훈련
+- Roboflow를 활용한 효율적인 데이터 라벨링 및 관리
+- 실제 영상에서의 객체 감지 성능 검증
+
+### 사용 기술 스택
+- **모델**: YOLOv8 (Ultralytics)
+- **데이터 관리**: Roboflow
+- **개발 환경**: Python 3.8+, CUDA (GPU 가속)
+- **주요 라이브러리**: `ultralytics`, `roboflow`, `opencv-python`
+
+---
+
+## 📊 Roboflow를 이용한 데이터 준비
+
+### 1. 데이터 수집 및 업로드
+```bash
+# 프로젝트 정보 필요 -> 샘플 코드에 이용
+프로젝트명: 0722_labeling-usrpl
+워크스페이스: jiyeonjin
+버전: v1
+```
+
+### 2. 영상에서 이미지 추출
+- **방법**: Roboflow에 영상 업로드 → 자동으로 프레임 추출
+- **장점**: 
+  - 자동으로 다양한 프레임 선택
+  - 품질 좋은 이미지만 자동 필터링
+  - 중복 프레임 제거
+
+### 3. 라벨링 작업
+#### 라벨링 도구 사용
+- Roboflow의 내장 어노테이션 도구 활용
+- 바운딩 박스를 이용한 객체 라벨링
+- 클래스별 일관된 라벨링 기준 적용
+
+#### 라벨링 품질 관리
+```python
+# 라벨링 통계 확인 예제
+총 이미지 수: XXX장
+총 라벨 수: XXX개
+클래스별 분포:
+- 클래스1: XX개
+- 클래스2: XX개
+```
+
+### 4. 데이터셋 전처리
+- **Train/Validation/Test 분할**: 70% / 20% / 10%
+- **데이터 증강 (Augmentation)**:
+  - 회전 (Rotation): ±15도
+  - 밝기 조절 (Brightness): ±25%
+  - 노이즈 추가 (Noise): 최대 5%
+
+### 5. API 키 생성
+```python
+API_KEY = "----------------"
+```
+
+---
+
+## ⚙️ YOLOv8 훈련 환경 설정
+
+### 1. 필요한 라이브러리 설치
+```bash
+pip install ultralytics roboflow opencv-python
+```
+
+### 2. Roboflow 데이터셋 다운로드
+```python
+from roboflow import Roboflow
+
+rf = Roboflow(api_key="JwvZQEBhBR5uPrwepqQW")
+project = rf.workspace("jiyeonjin").project("0722_labeling-usrpl")
+dataset = project.version(1).download("yolov8")
+```
+
+### 3. 하드웨어 요구사항
+- **GPU**: NVIDIA GPU (CUDA 지원)
+- **메모리**: 최소 8GB RAM
+- **저장공간**: 최소 10GB 여유 공간
+
+---
+
+## 🚀 모델 훈련 실행
+
+### 1. 기본 훈련 명령어
+```bash
+yolo train data=path/to/data.yaml model=yolov8n.pt epochs=100 imgsz=640
+```
+
+### 2. 상세 훈련 설정
+```python
+from ultralytics import YOLO
+
+# 모델 로드
+model = YOLO('yolov8n.pt')  # 사전 훈련된 모델 사용
+
+# 훈련 실행
+results = model.train(
+    data='path/to/data.yaml',
+    epochs=100,
+    imgsz=640,
+    batch=16,
+    name='custom_model',
+    patience=10,
+    save=True,
+    cache=True
+)
+```
+
+### 3. 훈련 파라미터 설명
+| 파라미터 | 설명 | 권장값 |
+|---------|------|--------|
+| `epochs` | 훈련 반복 횟수 | 100-300 |
+| `imgsz` | 입력 이미지 크기 | 640 |
+| `batch` | 배치 크기 | 16-32 |
+| `patience` | 조기 종료 기준 | 10 |
+
+---
+
+## 📈 결과 및 평가
+
+### 1. 모델 성능 지표
+```python
+# 모델 평가
+model = YOLO('runs/train/custom_model/weights/best.pt')
+metrics = model.val()
+
+print(f"mAP50: {metrics.box.map50}")
+print(f"mAP50-95: {metrics.box.map}")
+```
+
+### 2. 훈련 결과 분석
+- **Loss 그래프**: `runs/train/custom_model/results.png`
+- **혼동 행렬**: `runs/train/custom_model/confusion_matrix.png`
+- **PR 곡선**: `runs/train/custom_model/PR_curve.png`
+- <img width="1354" height="766" alt="image" src="https://github.com/user-attachments/assets/5578823d-83ed-4f17-acb1-5452c4e63c9a" />
+
+
+### 3. 모델 파일
+```
+runs/train/custom_model/weights/
+├── best.pt      # 최고 성능 모델
+├── last.pt      # 마지막 에포크 모델
+└── ...
+```
+
+---
+
+## 🎬 실제 사용 예제
+
+### 1. YouTube 영상에서 객체 감지
+```python
+import cv2
+import yt_dlp
+from ultralytics import YOLO
+
+def detect_objects_in_youtube_video(url, model_path):
+    # YouTube 영상 다운로드
+    ydl_opts = {
+        'format': 'best[height<=720]',
+        'outtmpl': 'input_video.%(ext)s',
+    }
+    
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+    
+    # 모델 로드
+    model = YOLO(model_path)
+    
+    # 영상 처리
+    cap = cv2.VideoCapture('input_video.mp4')
+    
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+            
+        # 객체 감지
+        results = model(frame)
+        
+        # 결과 시각화
+        annotated_frame = results[0].plot()
+        cv2.imshow('Detection', annotated_frame)
+        
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    
+    cap.release()
+    cv2.destroyAllWindows()
+
+# 사용 예시
+youtube_url = "https://www.youtube.com/watch?v=_CGb4GYHTvg"
+model_path = "runs/train/custom_model/weights/best.pt"
+detect_objects_in_youtube_video(youtube_url, model_path)
+```
+
+### 2. Roboflow API를 이용한 실시간 감지
+```python
+from roboflow import Roboflow
+
+# Roboflow 모델 로드
+rf = Roboflow(api_key="JwvZQEBhBR5uPrwepqQW")
+project = rf.workspace("jiyeonjin").project("0722_labeling-usrpl")
+model = project.version(1).model
+
+# 이미지 예측
+prediction = model.predict("test_image.jpg", confidence=40, overlap=30)
+prediction.save("result.jpg")
+```
+
+
