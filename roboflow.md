@@ -91,7 +91,7 @@
 
 
 ## 💡 API Key 사용 예시
-
+> notebooks/train-yolov8-object-detection-on-custom-dataset.ipynb 참고하기
 ```python
 from roboflow import Roboflow
 
@@ -202,6 +202,8 @@ Roboflow에서 YOLOv8 형식으로 내보낸 데이터셋은 다음과 같은 �
   - 회전 (Rotation): ±15도
   - 밝기 조절 (Brightness): ±25%
   - 노이즈 추가 (Noise): 최대 5%
+  - <img width="2158" height="1408" alt="image" src="https://github.com/user-attachments/assets/38803282-5e3c-4aac-b495-e3b4b3bcc1b8" />
+
 
 ### 5. API 키 생성
 ```python
