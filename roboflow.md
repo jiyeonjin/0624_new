@@ -88,7 +88,22 @@
 3. 좌측 메뉴에서 **"Roboflow API"** 선택
 
 4. **"Create API Key"** 또는 기존 키 복사  
-   → 생성된 키는 아래와 같이 생김:
+
+
+## 💡 API Key 사용 예시
+
+```python
+from roboflow import Roboflow
+
+# [⚠️ 여기에 본인의 실제 API 키를 입력하세요]
+rf = Roboflow(api_key="-----------------")
+
+project = rf.workspace().project("0722_labeling-usrpl")
+model = project.version(1).model
+
+prediction = model.predict("test.jpg", confidence=30, overlap=50)
+```
+
 
 ---
 
