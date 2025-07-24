@@ -122,6 +122,122 @@ Roboflow에서 YOLOv8 형식으로 내보낸 데이터셋은 다음과 같은 �
 | `valid/images/`       | 검증(Validation)에 사용할 이미지들 |
 | `valid/labels/`       | 검증 이미지의 라벨 정보 |
 
+# 📂 best.pt 파일 가이드
+
+
+
+
+### 📍 파일 위치
+```
+runs/train/exp/weights/
+├── best.pt      # ⭐ 최고 성능 모델
+├── last.pt      # 마지막 에포크 모델
+└── epoch_XX.pt  # 특정 에포크 모델들
+```
+
+### 🎯 best.pt의 정의
+- **최고 성능을 달성한 모델의 가중치 파일**
+- 훈련 과정에서 **validation mAP가 가장 높았던 에포크**의 모델
+- 실제 배포/추론에 사용하는 **최종 모델**
+
+## 💡 best.pt 생성 과정
+
+### 1. 훈련 중 모니터링 과정
+```python
+# 매 에포크마다 성능 검증
+Epoch   1: train_loss=1.2, val_mAP=0.45 
+Epoch   2: train_loss=1.1, val_mAP=0.52 ← best.pt 업데이트
+Epoch   3: train_loss=1.0, val_mAP=0.48
+Epoch   4: train_loss=0.9, val_mAP=0.55 ← best.pt 업데이트
+Epoch   5: train_loss=0.8, val_mAP=0.53
+...
+Epoch 100: train_loss=0.3, val_mAP=0.51 (best는 여전히 Epoch 4의 0.55)
+```
+
+## 🚀 best.pt 사용 방법
+
+### 기본 모델 로드
+```python
+from ultralytics import YOLO
+
+# best.pt 로드
+model = YOLO('runs/train/exp/weights/best.pt')
+
+# 단일 이미지 추론
+results = model('test_image.jpg')
+results[0].show()
+
+# 결과 저장
+results[0].save('result.jpg')
+```
+
+### 배치 처리
+```python
+# 여러 이미지 동시 처리
+results = model(['img1.jpg', 'img2.jpg', 'img3.jpg'])
+
+for i, result in enumerate(results):
+    result.save(f'result_{i}.jpg')
+```
+
+### 실시간 감지
+```python
+# 웹캠 실시간 감지
+model = YOLO('best.pt')
+model.predict(source=0, show=True, save=True)
+
+# YouTube 영상 처리
+model.predict(source='https://www.youtube.com/watch?v=VIDEO_ID')
+```
+
+## 🔧 best.pt 최적화 팁
+
+### 1. 훈련 설정 최적화
+```bash
+# 권장 훈련 설정
+yolo train \
+    data=data.yaml \
+    model=yolov8n.pt \
+    epochs=200 \
+    patience=20 \
+    batch=16 \
+    imgsz=640 \
+    save=True \
+    cache=True \
+    device=0
+```
+
+### 2. 적절한 검증 데이터 비율
+```python
+# 데이터 분할 권장 비율
+train_ratio = 0.7    # 70%
+val_ratio = 0.2      # 20%
+test_ratio = 0.1     # 10%
+
+# 검증 데이터가 너무 적으면 best.pt 선택이 불안정
+# 최소 20% 이상 권장
+```
+
+---
+
+## 🎯 결론
+
+**best.pt**는 YOLOv8 훈련 과정에서 검증 성능이 가장 우수했던 모델의 가중치 파일입니다.
+
+### ✅ 핵심 포인트
+- **실제 배포용**: 프로덕션 환경에서 사용
+- **최고 성능**: validation mAP 기준 최적화
+- **자동 선택**: 훈련 중 자동으로 업데이트
+- **과적합 방지**: 조기 종료와 연계하여 과적합 방지
+
+### 🚀 활용 가이드라인
+1. **항상 best.pt 사용**: 실제 추론/배포 시
+2. **성능 검증 필수**: val() 함수로 정량적 평가
+3. **시각적 확인**: 테스트 이미지로 품질 검증
+4. **과적합 체크**: best.pt vs last.pt 비교 분석
+
+**최종 권장사항**: `best.pt`는 여러분의 커스텀 YOLOv8 모델의 **최종 완성품**이므로, 충분한 검증을 거쳐 신뢰성을 확보한 후 사용
+
 
 ---
 
