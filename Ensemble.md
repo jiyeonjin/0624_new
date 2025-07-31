@@ -268,10 +268,57 @@ if __name__ == '__main__':
     detector.run_detection()
 
 
-# ▶️ 실행
+## ▶️ 실행
 detector = VideoEnsembleDetector()
 detector.run_detection()
 ```
+
+## 🔍 주요 코드 기능 설명 (요약)
+1. 모델 초기화 및 설정 : YOLOv8 모델을 여러 개 불러와서 앙상블 구성
+```
+self.models = [YOLO(cfg["weights"]) for cfg in self.ensemble_configs]
+```
+- YOLOv8n, YOLOv8s, YOLOv8m 등 다양한 모델을 결합해 성능 보완
+
+2. 영상에서 프레임 단위 추출 및 탐지
+
+python```
+cap = cv2.VideoCapture(video_path)
+while True:
+    success, frame = cap.read()
+    ...
+    ensemble_result = self.weighted_nms(detections)
+```
+
+- cv2.VideoCapture()를 통해 프레임 단위로 영상 처리
+- 각 프레임에 대해 여러 모델로 예측 → 앙상블 결과 도출
+
+
+3. Weighted NMS로 박스 통합
+
+def weighted_nms(self, detections): -> 동일 객체에 대해 여러 모델이 탐지한 박스를 평균화하여 하나로 통합
+
+- IoU(Intersection over Union)를 기준으로 유사한 박스를 그룹화
+- 그 그룹의 class, confidence, box를 평균 내 최종 예측 생성
+
+4. 차선 인식 추가
+
+def detect_lanes(frame): -> 색상 필터링 + Canny 엣지 → 허프 라인 검출로 차선 표시
+
+- 영상 내 도로 차선도 탐지해 녹색 선으로 표시됨
+- OpenCV 기반 차선 인식 알고리즘 사용
+
+5. 탐지 통계 저장 + 결과 압축
+
+```
+self.save_detection_stats(stats)
+self.create_final_package(video_path, stats, "Detection_Results")
+```
+
+- 탐지된 객체 수, 비율 등을 .json으로 저장
+- 영상 + 통계 파일을 .zip으로 묶어 Colab에서 다운로드 가능하게 제공
+
+
 ## 결과
 <img width="1052" height="590" alt="image" src="https://github.com/user-attachments/assets/3cff8944-d8ae-4a3f-8d7d-8bc8ca48bf54" />
 <img width="1066" height="494" alt="image" src="https://github.com/user-attachments/assets/aa1c49db-1ec2-4e0e-8c41-c58ad065bdc2" />
