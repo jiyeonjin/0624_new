@@ -2,7 +2,6 @@
 
 > Google Colab 기반 실행 | YOLOv8n + Confidence Threshold Ensemble | 객체 탐지 + 분석 리포트 자동 생성
 
----
 
 ## 앙상블 개요
 
