@@ -3,9 +3,21 @@
 > Google Colab 기반 실행 | YOLOv8n + Confidence Threshold Ensemble | 객체 탐지 + 분석 리포트 자동 생성
 
 
-## 앙상블 개요
+## 앙상블 객체 탐지란?
 
 이 프로젝트는 비디오 파일을 업로드하여 YOLOv8 모델을 기반으로 객체 탐지를 수행하고, **여러 confidence threshold를 앙상블**하는 방식으로 탐지 성능을 개선합니다.
+
+앙상블(Ensemble)은 여러 개의 모델 예측을 결합해 최종 결과를 도출하는 방식입니다. 본 시스템에서 사용된 방식은:
+
+다수의 YOLOv8 모델을 서로 다른 가중치(.pt) 파일로 불러와 같은 영상을 분석
+
+각 모델의 결과를 Weighted Non-Maximum Suppression (NMS) 방식으로 통합하여 중복 제거
+
+앙상블 효과로 인해 객체 탐지의 정확도, 신뢰도, 일관성 향상
+
+📌 Weighted NMS란?
+
+여러 모델이 탐지한 박스 중 위치가 비슷한 것들끼리 평균을 내어 더 정확한 최종 박스를 생성
 
 ### ✅ 주요 기능
 - **YOLOv8n** 모델 기반 탐지
@@ -30,6 +42,11 @@
 3. 비디오 업로드 → 탐지 결과 분석 → ZIP 자동 다운로드
 
 ---
+
+## 필요한 라이브러리 설치
+```
+!pip install ultralytics opencv-python numpy matplotlib
+```
 
 ## 전체 코드 (복붙 실행)
 
@@ -258,4 +275,12 @@ detector.run_detection()
 ## 결과
 <img width="1052" height="590" alt="image" src="https://github.com/user-attachments/assets/3cff8944-d8ae-4a3f-8d7d-8bc8ca48bf54" />
 <img width="1066" height="494" alt="image" src="https://github.com/user-attachments/assets/aa1c49db-1ec2-4e0e-8c41-c58ad065bdc2" />
+
+결과 해석
+
+detect_stats.json은 프레임 단위의 클래스 통계를 포함하므로
+
+특정 클래스가 언제 자주 나타났는지 분석 가능
+
+영상 출력은 시각적으로 신뢰도를 바탕으로 색상 차등을 두어 강조
 
