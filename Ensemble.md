@@ -274,6 +274,7 @@ detector.run_detection()
 ```
 
 ## 🔍 주요 코드 기능 설명 (요약)
+
 1. 모델 초기화 및 설정 : YOLOv8 모델을 여러 개 불러와서 앙상블 구성
 ```
 self.models = [YOLO(cfg["weights"]) for cfg in self.ensemble_configs]
@@ -282,7 +283,7 @@ self.models = [YOLO(cfg["weights"]) for cfg in self.ensemble_configs]
 
 2. 영상에서 프레임 단위 추출 및 탐지
 
-python```
+```
 cap = cv2.VideoCapture(video_path)
 while True:
     success, frame = cap.read()
