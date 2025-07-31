@@ -43,9 +43,22 @@
 
 ---
 
-## 필요한 라이브러리 설치
+## 필요한 패키지, 라이브러리 설치
 ```
-!pip install ultralytics opencv-python numpy matplotlib
+# 1. 기본 패키지 업데이트
+!apt update -qq
+
+# 2. FFmpeg 설치 (비디오 처리용)
+!apt install -y ffmpeg
+
+# 3. Python 패키지 설치
+!pip install ultralytics  # YOLOv8
+!pip install yt-dlp       # YouTube 다운로더
+!pip install opencv-python
+!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# 4. 추가 의존성 패키지
+!pip install numpy matplotlib pillow
 ```
 
 ## 전체 코드 (복붙 실행)
