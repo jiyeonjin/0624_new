@@ -276,11 +276,12 @@ detector.run_detection()
 <img width="1052" height="590" alt="image" src="https://github.com/user-attachments/assets/3cff8944-d8ae-4a3f-8d7d-8bc8ca48bf54" />
 <img width="1066" height="494" alt="image" src="https://github.com/user-attachments/assets/aa1c49db-1ec2-4e0e-8c41-c58ad065bdc2" />
 
-결과 해석
 
-detect_stats.json은 프레임 단위의 클래스 통계를 포함하므로
+### 결과 해석
 
-특정 클래스가 언제 자주 나타났는지 분석 가능
+- detect_stats.json은 프레임 단위의 클래스 통계를 포함하므로
 
-영상 출력은 시각적으로 신뢰도를 바탕으로 색상 차등을 두어 강조
+- 특정 클래스가 언제 자주 나타났는지 분석 가능
+
+- 영상 출력은 시각적으로 신뢰도를 바탕으로 색상 차등을 두어 강조
 
