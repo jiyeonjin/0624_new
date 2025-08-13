@@ -201,9 +201,87 @@
 
 ### 📝 코랩 노트북 링크
 [차선 인식 프로젝트 코랩 노트북](https://colab.research.google.com/github/jiyeonjin/0624_new/blob/main/0813_%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.ipynb)
-
 위 링크를 통해 전체 구현 코드와 실행 결과를 확인할 수 있습니다.
+
+### 코랩에서 실행한 코드 상세 분석
+
+차선 인식 프로젝트는 다음과 같은 순서로 진행됩니다:
+
+```
+1. 데이터 정리 → 2. 환경 설정 → 3. 데이터 준비 → 4. 모델 로딩 → 5. 학습 → 6. 추론 → 7. 결과 확인
+```
+
+### 주요 구성 요소
+- **데이터셋**: Roboflow에서 다운로드한 라벨링된 이미지들
+- **모델**: SegFormerForSemanticSegmentation (사전 훈련된 모델)
+- **학습 코드**: 전이학습을 위한 파인튜닝 코드
+- **추론 코드**: 새로운 이미지에서 차선을 찾는 코드
 
 ---
 
-*본 프로젝트는 SegFormerForSemanticSegmentation 모델과 전이학습을 통한 차선 인식 시스템 구축을 목표로 합니다.*
+## 데이터 파일 정리 코드 분석
+
+### 실제 프로젝트 코드 분석
+
+```python
+import os
+import shutil
+
+def separate_images_and_masks(data_dir):
+    # 이미지와 마스크 파일을 구분하는 확장자 또는 규칙에 맞게 분류
+    image_exts = ['.jpg', '.jpeg', '.png']  # 실제 이미지 확장자
+    mask_exts = ['.png']                    # 마스크 확장자 (보통 png)
+    
+    # 새 폴더 경로 지정
+    image_folder = os.path.join(data_dir, 'images')
+    mask_folder = os.path.join(data_dir, 'masks')
+    os.makedirs(image_folder, exist_ok=True)
+    os.makedirs(mask_folder, exist_ok=True)
+    
+    # 데이터 폴더 내 파일 목록 가져오기
+    all_files = os.listdir(data_dir)
+    
+    for file_name in all_files:
+        file_path = os.path.join(data_dir, file_name)
+        
+        # 파일 여부 확인
+        if os.path.isfile(file_path):
+            ext = os.path.splitext(file_name)[1].lower()
+            
+            # 확장자에 따라 폴더로 이동
+            if ext in image_exts and 'mask' not in file_name.lower():
+                shutil.move(file_path, os.path.join(image_folder, file_name))
+            elif ext in mask_exts and 'mask' in file_name.lower():
+                shutil.move(file_path, os.path.join(mask_folder, file_name))
+    
+    print(f"{data_dir} 내 이미지와 마스크 파일을 분리해 각각 images/, masks/ 폴더에 옮겼습니다.")
+
+# train, valid, test 각각에 대해 실행
+base_dir = '/content/data'
+for split in ['train', 'valid', 'test']:
+    split_dir = os.path.join(base_dir, split)
+    separate_images_and_masks(split_dir)
+```
+
+**👉 실행 결과**:
+```
+/content/data/train/images/    ← 훈련용 이미지들
+/content/data/train/masks/     ← 훈련용 마스크들
+/content/data/valid/images/    ← 검증용 이미지들  
+/content/data/valid/masks/     ← 검증용 마스크들
+/content/data/test/images/     ← 테스트용 이미지들
+/content/data/test/masks/      ← 테스트용 마스크들
+```
+
+### ✅ 이 코드가 중요한 이유
+
+**딥러닝 모델 학습을 위해서는 데이터가 다음과 같이 정리되어야 합니다**:
+- 이미지와 마스크가 별도 폴더에 정리
+- 훈련/검증/테스트 세트로 구분
+- 일관된 폴더 구조 유지
+
+이 코드는 **데이터 전처리의 첫 번째 단계**로, 이후 모든 학습 과정의 기반이 됩니다!
+
+---
+
+
