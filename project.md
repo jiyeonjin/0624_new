@@ -1,11 +1,10 @@
 # 차선 인식 프로젝트 (SegFormerForSemanticSegmentation + 전이학습)
 팀원 : 윤은식, 전은서, 박현욱, 유성일, 지연진
 
-## 📌 프로젝트 개요
+## 📌 프로젝트 목표
 이 프로젝트는 **Hugging Face & NVIDIA 협업 SegFormerForSemanticSegmentation 모델**을 사용하여 **차선 인식(Lane Detection)** 을 수행합니다.  
 `seg11xl.pt` 사전 학습 가중치를 활용해 **전이학습(Transfer Learning)** 으로 차선 픽셀 분류 모델을 학습합니다.
 
----
 
 ## 🛠 기술 스택
 - **모델:** SegFormerForSemanticSegmentation (`seg11xl.pt` 기반)
@@ -22,6 +21,59 @@
 2. **Project Type:** *Semantic Segmentation*
 3. 프로젝트 이름: `lane-detection` (자유롭게 설정 가능)
 4. 교수님께서 주신 영상 합쳐 업로드 (22분 가량)
+
+## 데이터 준비 전 핵심 주의 사항
+
+### 잘못된 접근법
+- **Object Detection** 프로젝트 타입 선택
+- 결과: Image and Annotation Format에서 **semantic segmentation masks 옵션이 없음**
+
+### 올바른 접근법  
+- **Instance Segmentation** 프로젝트 타입 선택
+- 결과: segmentation masks 옵션 제공으로 원하는 데이터 형식 획득 가능
+
+## 🛠️ 단계별 진행 가이드
+
+### 1단계: Roboflow 프로젝트 생성
+1. Roboflow 플랫폼 접속
+2. 새 프로젝트 생성 시 **반드시 "Instance Segmentation" 선택**
+   - ⚠️ Object Detection 선택 시 semantic segmentation masks 옵션 부재
+3. 프로젝트 이름 및 기본 설정 완료
+
+### 2단계: 데이터 업로드 및 라벨링
+1. 차선 이미지 데이터 업로드
+2. Segmentation 방식으로 차선 영역 라벨링
+   - 픽셀 단위로 정확한 차선 경계 표시
+   - 다양한 차선 유형 고려 (실선, 점선, 중앙선 등)
+
+### 3단계: 데이터셋 다운로드
+1. **Image and Annotation Format**에서 **"semantic segmentation masks"** 선택
+2. 원하는 형식으로 데이터셋 export
+3. 로컬 환경으로 다운로드
+
+### 4단계: 모델 학습 준비
+1. SegFormerForSemanticSegmentation 모델 설정
+2. seg11xl.pt 사전 훈련 모델 로드
+3. 전이학습을 위한 파라미터 조정
+
+## 📊 기대 효과
+
+- **전이학습 활용**: 기존 모델의 학습된 특징을 활용하여 학습 시간 단축
+- **정확한 세그멘테이션**: 픽셀 단위의 정밀한 차선 인식
+- **효율적인 데이터 관리**: Roboflow를 통한 체계적인 데이터 전처리
+
+## 🔍 트러블슈팅
+
+### 문제: Semantic Segmentation Masks 옵션이 보이지 않음
+**원인**: Object Detection 프로젝트 타입으로 생성
+**해결책**: 프로젝트를 Instance Segmentation으로 새로 생성
+
+### 문제: 라벨링 품질 저하
+**해결책**: 
+- 충분한 데이터 다양성 확보
+- 정확한 픽셀 단위 라벨링 수행
+- 다양한 환경 조건의 이미지 포함
+
 
 ---
 
