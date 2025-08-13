@@ -22,13 +22,13 @@
 3. 프로젝트 이름: `lane-detection` (자유롭게 설정 가능)
 4. 교수님께서 주신 영상 합쳐 업로드 (22분 가량)
 
-#### ** 데이터 준비 전 핵심 주의 사항
+### * 데이터 준비 전 핵심 주의 사항
 
-##### 잘못된 접근법
+#### 잘못된 접근법
 - **Object Detection** 프로젝트 타입 선택
 - 결과: Image and Annotation Format에서 **semantic segmentation masks 옵션이 없음**
 
-##### 올바른 접근법  
+#### 올바른 접근법  
 - **Instance Segmentation** 프로젝트 타입 선택
 - 결과: segmentation masks 옵션 제공으로 원하는 데이터 형식 획득 가능
 
