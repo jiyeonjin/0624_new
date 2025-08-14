@@ -409,6 +409,52 @@ data/
 
 ### runpod Jupyter NoteBook에서 실행한 코드 상세 분석
 
+### ✅ 실제 프로젝트 코드 분석 1
+
+```
+# ----------------- [ 1. 데이터셋 다운로드 ] -----------------
+ROBOFLOW_API_KEY = "본인의 API-KEY 입력" # 본인의 API 키를 입력하세요.
+WORKSPACE_ID = "jiyeonjin"
+PROJECT_ID = "segmentation_-b4buk"
+VERSION_NUMBER = 1
+
+rf = Roboflow(api_key=ROBOFLOW_API_KEY)
+project = rf.workspace(WORKSPACE_ID).project(PROJECT_ID)
+dataset = project.version(VERSION_NUMBER).download("png-mask-semantic")
+base_data_path = dataset.location
+clear_output()
+print(f"✅ 데이터셋 다운로드 완료! 경로: {base_data_path}")
+```
+> Roboflow API로 데이터셋 다운로드
+수동으로 zip 파일을 다운로드하고 업로드하는 번거로운 과정을 생략하고, **Roboflow API를 사용하면 코랩이나 런파드 환경으로 데이터셋을 직접, 그리고 훨씬 빠르게 다운로드**할 수 있습니다.
+
+#### 1. API Key 발급받기
+1.  Roboflow에 로그인한 후, 우측 상단의 프로필 아이콘을 클릭하여 **[Settings]**로 이동합니다.
+2.  왼쪽 메뉴에서 **[Roboflow API]** 탭을 선택합니다.
+3.  `Private API Key` 섹션에서 본인의 고유 API 키를 복사합니다. 이 키는 외부에 노출되지 않도록 주의해야 합니다.
+
+    <img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/1aa12d1c-b59c-440c-a62c-2c66b8bc7bfe" />
+
+#### 2. 노트북에서 API로 다운로드 실행
+아래 코드를 노트북의 새로운 셀에 붙여넣고 실행하면, 데이터셋이 자동으로 다운로드 및 압축 해제됩니다.
+
+```python
+# 1. roboflow 라이브러리를 먼저 설치합니다.
+!pip install -q roboflow
+
+# 2. 복사한 코드를 붙여넣고 실행합니다.
+from roboflow import Roboflow
+
+# 본인의 API 키, 워크스페이스 ID, 프로젝트 ID, 버전 번호로 수정하세요.
+rf = Roboflow(api_key="YOUR_PRIVATE_API_KEY")
+project = rf.workspace("YOUR_WORKSPACE_ID").project("YOUR_PROJECT_ID")
+dataset = project.version(YOUR_VERSION_NUMBER).download("png-mask-semantic")
+
+# 다운로드된 경로를 확인합니다. (예: /content/lane-detection-1)
+print(f"✅ 데이터셋 다운로드 완료! 경로: {dataset.location}")
+```
+
+
 ### Segformer 차선 인식 프로젝트: 클라우드 환경 트러블슈팅 가이드
 ### **✅ 문제 1: 라이브러리 설치 실패 (`error: can't find Rust compiler`)**
 
