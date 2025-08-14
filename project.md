@@ -525,7 +525,8 @@ except IndexError:
 이제 업로드 위젯을 사용하지 않습니다.
 
 1.  **파일 직접 업로드**: 노트북 왼쪽의 **파일 탐색기** 창에서 **업로드 아이콘(↑)**을 눌러 처리할 영상을 직접 업로드합니다.
-2.  <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/b244d3cc-5de8-4f4f-aece-0c2ade39423c" />
+<img width="560" height="594" alt="image" src="https://github.com/user-attachments/assets/0648d6b6-1fbb-44df-b3b0-e6e2b717ab7a" />
+
 3.  **최종 처리 코드 실행**: 기존의 5번, 6번 셀은 무시합니다. 아래 코드를 **새로운 셀**에 붙여넣고, `video_filename` 변수에 방금 업로드한 파일의 정확한 이름(왼쪽 상단의 workspace에서 경로 복사)을 입력한 뒤 실행하세요.
 
     ```python
