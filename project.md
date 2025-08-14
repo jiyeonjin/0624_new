@@ -145,16 +145,16 @@
 ### 📹 프로젝트 결과 영상
 **차선 인식 모델 실행 결과 데모 영상 (2분)**
 
-아래 영상에서 실제 차선 인식 모델의 추론 결과를 확인할 수 있습니다:
-
 ![차선 인식 데모]아래 영상에서 실제 차선 인식 모델의 추론 결과를 확인할 수 있습니다:
 
-![차선 인식 데모](https://github.com/jiyeonjin/0624_new/raw/main/assets/demo.gif)
+아래 영상에서 실제 차선 인식 모델의 추론 결과를 확인할 수 있습니다:
+
+![차선 인식 데모](https://github.com/jiyeonjin/0624_new/raw/main/assets/demo.gif.gif)
 
 <p align="center">
-  <a href="https://github.com/jiyeonjin/0624_new/raw/main/assets/demo_video.mp4">
-    <img src="https://img.shields.io/badge/🎥_전체_영상_다운로드-2분_고화질_MP4-FF6B6B?style=for-the-badge&logo=play&logoColor=white" alt="전체 영상 다운로드"/>
-  </a>
+  <img src="https://img.shields.io/badge/🎬_차선_인식_결과-실시간_데모-4CAF50?style=for-the-badge&logo=videocam&logoColor=white" alt="차선 인식 결과"/>
+  <br>
+  <sub>📊 SegFormerForSemanticSegmentation 모델 추론 결과</sub>
 </p>
 
 
