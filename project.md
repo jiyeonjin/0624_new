@@ -396,7 +396,7 @@ data/
 ### 📹 프로젝트 결과 영상
 **차선 인식 모델 실행 결과 데모 영상 (2분)**
 
-![차선 인식 데모](https://github.com/jiyeonjin/0624_new/raw/main/assets/demo.gif.gif)
+![차선 인식 데모][(https://github.com/jiyeonjin/0624_new/raw/main/assets/demo.gif.gif)](https://github.com/jiyeonjin/0624_new/blob/main/assets/lane_detection_demo.gif)
 
 <p align="center">
   <img src="https://img.shields.io/badge/🎬_차선_인식_결과-실시간_데모-4CAF50?style=for-the-badge&logo=videocam&logoColor=white" alt="차선 인식 결과"/>
