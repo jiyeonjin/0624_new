@@ -677,8 +677,9 @@ id2label = {0: "lane", 1: "background"} # ★ 이 부분이 핵심
 
 모델이 학습 직전에 받는 `labels` 텐서의 값을 직접 확인하여, 데이터가 의도대로 `0`과 `1`로 구성되어 있는지 최종 점검합니다.
 
+---
 
-> 이외 여러개의 결과 영상을 얻었습니다.
+이외 여러개의 결과 영상을 얻었습니다.
 > <p align="center">
   <img src="assets/lane_detection_demo4.gif" width="550" alt="Lane Detection Demo 4">
 </p>
