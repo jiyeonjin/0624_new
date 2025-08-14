@@ -679,7 +679,10 @@ id2label = {0: "lane", 1: "background"} # ★ 이 부분이 핵심
 
 
 > 이외 여러개의 결과 영상을 얻었습니다.
-> 
+> <p align="center">
+  <img src="assets/lane_detection_demo4.gif" width="550" alt="Lane Detection Demo 4">
+</p>
+
 
 
 
