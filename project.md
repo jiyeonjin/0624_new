@@ -1,5 +1,4 @@
 # 차선 인식 프로젝트 (SegFormerForSemanticSegmentation + 전이학습)
-
 **팀원:** 윤은식, 전은서, 박현욱, 유성일, 지연진
 
 ---
