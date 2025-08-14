@@ -386,24 +386,24 @@ data/
 
 ---
 
-## 📝 runpod 환경에서 실행하기
+## 📝 RunPod 환경에서 실행하기
 
-[차선 인식 프로젝트 코랩 노트북]https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15
-
+[차선 인식 프로젝트 Colab 노트북](https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)  
 위 링크를 통해 전체 구현 코드와 실행 결과를 확인할 수 있습니다.
 
-
-<div align="center">
+---
 
 ## 🎬 프로젝트 결과 영상
+
 **차선 인식 모델 실행 결과 데모 영상 (30초)**
 
 ![차선 인식 데모](https://github.com/jiyeonjin/0624_new/raw/main/assets/lane_detection_demo.gif)
 
 ![차선 인식 결과](https://img.shields.io/badge/🎯_차선_인식_결과-실시간_데모-4CAF50?style=for-the-badge&logo=target&logoColor=white)
 
-**📊 SegFormerForSemanticSegmentation 모델 추론 결과**
+---
 
-</div>
+## 📊 SegFormerForSemanticSegmentation 모델 추론 결과
+
 
 
