@@ -405,6 +405,8 @@ data/
   <sub>📊 SegFormerForSemanticSegmentation 모델 추론 결과</sub>
 </p>
 
+---
+
 ### runpod Jupyter NoteBook에서 실행한 코드 상세 분석
 
 ### Segformer 차선 인식 프로젝트: 클라우드 환경 트러블슈팅 가이드
@@ -523,8 +525,8 @@ except IndexError:
 이제 업로드 위젯을 사용하지 않습니다.
 
 1.  **파일 직접 업로드**: 노트북 왼쪽의 **파일 탐색기** 창에서 **업로드 아이콘(↑)**을 눌러 처리할 영상을 직접 업로드합니다.
-
-2.  **최종 처리 코드 실행**: 기존의 5번, 6번 셀은 무시합니다. 아래 코드를 **새로운 셀**에 붙여넣고, `video_filename` 변수에 방금 업로드한 파일의 정확한 이름(왼쪽 상단의 workspace에서 경로 복사)을 입력한 뒤 실행하세요.
+2.  <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/b244d3cc-5de8-4f4f-aece-0c2ade39423c" />
+3.  **최종 처리 코드 실행**: 기존의 5번, 6번 셀은 무시합니다. 아래 코드를 **새로운 셀**에 붙여넣고, `video_filename` 변수에 방금 업로드한 파일의 정확한 이름(왼쪽 상단의 workspace에서 경로 복사)을 입력한 뒤 실행하세요.
 
     ```python
     # ===================================================================
@@ -585,6 +587,9 @@ except IndexError:
     except Exception as e:
         print(f"❌ 예상치 못한 오류가 발생했습니다: {e}")
     ```
+
+> 최종 영상 출력 결과
+> <img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/06fedfac-a004-4197-952c-b9af38f94c33" />
 
 ---
 
