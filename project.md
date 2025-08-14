@@ -473,7 +473,7 @@ ERROR: Failed to build installable wheels for some pyproject.toml based projects
 
 결정적인 증거는 **파일 업로드 버튼의 숫자가 바뀌지 않는 현상**입니다. 브라우저에서 업로드가 100% 완료된 것처럼 보여도, 버튼이 `영상 업로드 (0)` 에서 `(1)`로 바뀌지 않았다면 이 문제가 발생한 것입니다.
 
-<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/42a0cded-089b-465e-9644-75c3e97b7eea" />
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/42a0cded-089b-465e-9644-75c3e97b7eea" />
 
 
 #### 🔍 원인 분석
