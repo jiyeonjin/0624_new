@@ -388,8 +388,7 @@ data/
 
 ## 📝 RunPod 환경에서 실행하기
 
-[차선 인식 프로젝트 Colab 노트북]
-(https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)  
+[차선 인식 프로젝트 Colab 노트북](https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)  
 
 위 링크를 통해 전체 구현 코드와 실행 결과를 확인할 수 있습니다.
 
