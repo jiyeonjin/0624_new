@@ -641,12 +641,13 @@ except IndexError:
 
 
 ## 프로젝트 마무리
+
 > <p align="center">
   <img src="assets/lane_detection_demo2.gif" width="550" alt="Lane Detection Demo">
 </p>
 
-> 위의 결과 영상 진단 :
-> ### **진단: 학습 목표의 반전 현상**
+> 위의 오류 결과 영상 진단 :
+> ### **학습 목표의 반전 현상**
 
 > **모델이 '차선'이 아닌, '차선을 제외한 모든 배경(하늘, 나무 등)'을 학습했습니다.**
 
