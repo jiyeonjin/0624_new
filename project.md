@@ -15,7 +15,7 @@
 
 ## 1. 프로젝트 개요
 
-### 📌 프로젝트 목표
+### 프로젝트 목표
 - 이 프로젝트는 **Hugging Face & NVIDIA 협업 SegFormerForSemanticSegmentation 모델**을 사용하여 **차선 인식(Lane Detection)**을 수행합니다.
 - `seg11xl.pt` 사전 학습 가중치를 활용해 **전이학습(Transfer Learning)**으로 차선 픽셀 분류 모델을 학습합니다.
 
