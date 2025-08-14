@@ -388,11 +388,10 @@ data/
 
 ## 📝 RunPod 환경에서 실행하기
 
-[차선 인식 프로젝트 Colab 노트북](https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)  
+[차선 인식 프로젝트 Colab 노트북]
+(https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)  
 
 위 링크를 통해 전체 구현 코드와 실행 결과를 확인할 수 있습니다.
-
----
 
 ### 📹 프로젝트 결과 영상
 **차선 인식 모델 실행 결과 데모 영상 (30초)**
@@ -407,6 +406,197 @@ data/
   <sub>📊 SegFormerForSemanticSegmentation 모델 추론 결과</sub>
 </p>
 
+### runpod Jupyter NoteBook에서 실행한 코드 상세 분석
+
+```markdown
+# Segformer 차선 인식 프로젝트: 클라우드 환경 트러블슈팅 가이드
+
+안녕하세요! 이 프로젝트를 클라우드 GPU 환경(예: RunPod, Google Colab)에서 실행하면서 겪었던 주요 문제들과 그 해결 과정을 상세히 정리했습니다. 비슷한 문제를 겪는 분들의 소중한 시간을 아껴드리고자 이 문서를 작성합니다.
+
+---
+
+### **문제 1: 라이브러리 설치 실패 (`error: can't find Rust compiler`)**
+
+Jupyter Notebook 환경에서 가장 먼저 마주칠 수 있는 문제입니다.
+
+#### ախ 증상
+
+`pip install` 명령어를 실행했을 때, 설치가 중단되며 아래와 유사한 붉은색 오류 메시지가 나타납니다.
+
+```bash
+error: subprocess-exited-with-error
+
+× Building wheel for tokenizers (pyproject.toml) did not run successfully.
+│ exit code: 1
+╰─> [62 lines of output]
+    ...
+    running build_ext
+    running build_rust
+    error: can't find Rust compiler
+    ...
+ERROR: Failed to build installable wheels for some pyproject.toml based projects (tokenizers)
+```
+
+이 오류의 여파로, `from datasets import ...` 코드를 실행할 때 `ModuleNotFoundError: No module named 'datasets'` 라는 후속 오류가 발생합니다.
+
+#### 🔍 원인 분석
+
+이 문제의 핵심 원인은 `pip`가 **소스 코드를 직접 컴파일하여 라이브러리를 설치**하려고 시도하기 때문입니다.
+
+- **의존성 문제**: `transformers` 라이브러리는 `tokenizers` 패키지에 의존하며, 이 패키지는 Rust 언어로 작성된 부분이 포함되어 있습니다.
+- **버전 불일치**: 오래된 버전의 라이브러리(`transformers<4.21.0` 등)를 설치하도록 지정하면, 현재 사용 중인 최신 파이썬 환경과 호환되는 **미리 컴파일된 파일(wheel)**이 없을 수 있습니다.
+- **컴파일 시도 및 실패**: 결국 `pip`는 소스 코드를 직접 컴파일하려고 시도하지만, 시스템에 **Rust 컴파일러**가 없으므로 빌드에 실패하고 오류를 발생시키는 것입니다.
+
+#### ✅ 최종 해결책
+
+가장 간단하고 올바른 해결책은 Rust 컴파일러를 설치하는 것이 아니라, **`pip`가 컴파일을 시도할 필요가 없도록 하는 것**입니다. 라이브러리 버전 제한을 제거하여 `pip`가 현재 환경에 가장 적합한 **미리 컴파일된 최신 버전을 자동으로 찾도록** 유도하면 됩니다.
+
+**[수정 전]**
+```python
+!pip install -q "transformers<4.21.0" "datasets<2.4.0"
+```
+
+**[수정 후]**
+```python
+# 버전 제한을 모두 제거하여 최신 호환 버전을 설치합니다.
+!pip install -q "transformers" "datasets" "accelerate" "opencv-python" "ipywidgets" "tqdm" "pillow" "roboflow"
+```
+
+---
+
+### **문제 2: 훈련 후 영상 처리 실패 (`오류: 영상이 업로드되지 않았습니다.`)**
+
+모델 훈련을 성공적으로 마친 후, 직접 촬영한 영상을 업로드하여 처리하려고 할 때 발생하는 가장 까다로운 문제입니다.
+
+#### ախ 증상
+
+`widgets.FileUpload` 위젯을 통해 영상을 업로드하고 처리 셀(6번 셀)을 실행하면, 영상 처리가 시작되지 않고 아래와 같은 오류 메시지만 출력됩니다.
+
+```
+❌ 오류: 영상이 업로드되지 않았습니다. 위 5번 셀에서 먼저 영상을 업로드해주세요.
+```
+
+결정적인 증거는 **파일 업로드 버튼의 숫자가 바뀌지 않는 현상**입니다. 브라우저에서 업로드가 100% 완료된 것처럼 보여도, 버튼이 `영상 업로드 (0)` 에서 `(1)`로 바뀌지 않았다면 이 문제가 발생한 것입니다.
+
+<img width="400" alt="The upload button still shows (0) after an upload attempt" src="https://github.com/user-attachments/assets/f7e4f134-8c88-466c-94ca-195c805a81ca">
+
+#### 🔍 원인 분석
+
+이 문제는 코드의 논리 오류가 아니라, **웹 기반 Jupyter 환경과 브라우저 간의 통신 불안정성** 때문에 발생합니다.
+
+- **파일 위젯의 한계**: `FileUpload` 위젯이 브라우저에서 서버(Jupyter 커널)로 파일 데이터를 전송하는 과정이 불안정하면, 파이썬 변수(`uploader.value`)에는 파일 정보가 제대로 등록되지 않을 수 있습니다.
+- **결과**: 코드는 계속해서 비어있는 `uploader.value`를 확인하니, 파일이 없다고 판단할 수밖에 없습니다.
+
+#### ✅ 최종 해결책 (단계별 가이드)
+
+불안정한 업로드 위젯을 완전히 우회하고, **Jupyter 환경의 파일 탐색기를 통해 직접 파일을 업로드**하는 것이 가장 확실하고 실패 없는 방법입니다.
+
+##### **1단계: 커널(Kernel) 재시작 - 환경 초기화**
+변수 충돌이나 꼬임 현상을 방지하기 위해 커널을 재시작하여 환경을 깨끗하게 만듭니다. (**작성한 코드나 저장된 파일은 사라지지 않습니다**)
+
+- **RunPod / JupyterLab**: 상단 메뉴 `[ Kernel ]` → `[ Restart Kernel... ]` 클릭
+- **Google Colab**: 상단 메뉴 `[ 런타임 ]` → `[ 런타임 다시 시작 ]` 클릭
+- **VS Code**: 노트북 오른쪽 상단의 **원형 화살표(🔄) 아이콘** 클릭
+
+##### **2단계: 필수 셀만 재실행 (훈련 제외!)**
+커널이 재시작되었으므로, 필요한 데이터와 라이브러리를 다시 메모리로 불러옵니다.
+1. `[ 0. 환경 설정 ... ]` 셀 실행
+2. `[ 1. 데이터셋 다운로드 ]` 셀 실행
+3. `[ 2. 데이터셋 준비 ]` 셀 실행
+4. `[ 3. 모델, 프로세서 ... ]` 셀 실행
+5. **🚨 절대로 `[ 4. 모델 훈련 ]` 셀은 다시 실행하지 마세요! (가장 중요)**
+
+##### **3단계: 훈련된 모델 안전하게 불러오기**
+커널 재시작으로 `trainer` 변수가 사라졌으므로, 디스크에 저장된 **훈련 완료된 모델**을 직접 불러오는 코드가 필요합니다. 아래 코드를 **새로운 셀**에 넣고 실행하세요.
+
+```python
+# ===================================================================
+# [ ★ 새로운 셀 ★ ] - 저장된 모델 안전하게 불러오기
+# ===================================================================
+import glob
+
+# 4번 셀을 다시 실행할 필요 없이, 훈련이 끝난 모델을 폴더에서 직접 불러옵니다.
+# 가장 마지막에 저장된 체크포인트 폴더를 자동으로 찾아줍니다.
+try:
+    last_checkpoint = sorted(glob.glob("./segformer-b0-finetuned-lanes-final-v7/checkpoint-*/"))[-1]
+    model = SegformerForSemanticSegmentation.from_pretrained(last_checkpoint)
+    processor = SegformerImageProcessor.from_pretrained("nvidia/segformer-b0-finetuned-ade-512-512", do_reduce_labels=False)
+    print(f"✅ 훈련이 완료된 모델 ({last_checkpoint})을 성공적으로 불러왔습니다.")
+except IndexError:
+    print("❌ 오류: 저장된 체크포인트 폴더를 찾을 수 없습니다. 훈련이 정상적으로 완료되었는지 확인해주세요.")
+```
+
+##### **4단계: 파일 직접 업로드 및 최종 처리**
+이제 업로드 위젯을 사용하지 않습니다.
+
+1.  **파일 직접 업로드**: 노트북 왼쪽의 **파일 탐색기** 창에서 **업로드 아이콘(↑)**을 눌러 처리할 영상을 직접 업로드합니다.
+
+2.  **최종 처리 코드 실행**: 기존의 5번, 6번 셀은 무시합니다. 아래 코드를 **새로운 셀**에 붙여넣고, `video_filename` 변수에 방금 업로드한 파일의 정확한 이름을 입력한 뒤 실행하세요.
+
+    ```python
+    # ===================================================================
+    # [ ★ 최종 해결용 셀 ★ ] - 직접 업로드된 파일 처리하기
+    # ===================================================================
+    from tqdm.notebook import tqdm
+    from PIL import Image
+    import numpy as np
+    import torch, cv2, os
+
+    # 1. 여기에 방금 직접 업로드한 영상 파일의 정확한 이름을 입력하세요.
+    video_filename = "내영상.mp4"  # 예: "my_video.mp4"
+
+    # 2. 아래 코드가 위 파일 이름으로 영상 처리를 시작합니다.
+    print(f"✅ '{video_filename}' 파일을 직접 처리합니다. 잠시만 기다려주세요...")
+
+    try:
+        model.eval()
+        input_filename = video_filename
+        output_filename = "final_output_video.mp4"
+
+        video_capture = cv2.VideoCapture(input_filename)
+        if not video_capture.isOpened():
+            print(f"❌ 오류: '{input_filename}' 파일을 열 수 없습니다. 파일 이름이 정확한지 확인하세요.")
+        else:
+            fps = video_capture.get(cv2.CAP_PROP_FPS)
+            total_frames = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
+            w = int(video_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+            h = int(video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            
+            video_writer = cv2.VideoWriter(output_filename, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            model.to(device)
+
+            print(f"\n✅ 영상 처리를 시작합니다... (총 {total_frames} 프레임)")
+
+            for _ in tqdm(range(total_frames)):
+                ret, frame = video_capture.read()
+                if not ret: break
+                image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+                with torch.no_grad():
+                    inputs = processor(images=image, return_tensors="pt").to(device)
+                    logits = model(**inputs).logits.cpu()
+                
+                mask = torch.nn.functional.interpolate(logits, size=(h, w), mode="bilinear", align_corners=False).argmax(dim=1).numpy().astype(np.uint8)
+                color_mask = np.zeros_like(frame)
+                color_mask[mask == 1] = # 초록색 차선
+                overlaid_frame = cv2.addWeighted(frame, 1, color_mask, 0.5, 0)
+                video_writer.write(overlaid_frame)
+            
+            video_capture.release()
+            video_writer.release()
+            
+            print(f"\n✅ 영상 처리 완료! 결과가 '{output_filename}' 파일로 저장되었습니다.")
+
+    except NameError:
+        print("❌ 오류: 'model' 또는 'processor' 변수를 찾을 수 없습니다. 위 3단계 [★저장된 모델 불러오기★] 셀을 실행했는지 확인해주세요.")
+    except Exception as e:
+        print(f"❌ 예상치 못한 오류가 발생했습니다: {e}")
+    ```
+
+---
+
+이 가이드가 여러분의 프로젝트 진행에 도움이 되기를 바랍니다. Happy Coding!
+```
 
 
 
