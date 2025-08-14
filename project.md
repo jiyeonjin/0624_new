@@ -386,7 +386,7 @@ data/
 
 ---
 
-### 📝 runpod 환경에서 실행하기
+## 📝 runpod 환경에서 실행하기
 
 [차선 인식 프로젝트 코랩 노트북][(https://colab.research.google.com/github/jiyeonjin/0624_new/blob/main/0813_%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.ipynb)](https://colab.research.google.com/drive/1mNNOflF0aAW2D52Q3m0ojeEksRXFK4pg#scrollTo=60006505-8d6d-4b0a-9adc-03e60aaffd15)
 
