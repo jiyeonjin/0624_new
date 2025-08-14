@@ -47,7 +47,7 @@
 #### 올바른 접근법
 - **Instance Segmentation** 프로젝트 타입 선택
 - 결과: segmentation masks 옵션 제공으로 원하는 데이터 형식 획득 가능
-- <img width="1344" height="1048" alt="image" src="https://github.com/user-attachments/assets/97a9b092-91df-47c6-9afd-9959dfc0028d" />
+- <img width="1000" height="700" alt="image" src="https://github.com/user-attachments/assets/97a9b092-91df-47c6-9afd-9959dfc0028d" />
 위 이미지와 같이 선택하여 프로젝트 생성하기.
 
 ---
