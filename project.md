@@ -473,7 +473,8 @@ ERROR: Failed to build installable wheels for some pyproject.toml based projects
 
 결정적인 증거는 **파일 업로드 버튼의 숫자가 바뀌지 않는 현상**입니다. 브라우저에서 업로드가 100% 완료된 것처럼 보여도, 버튼이 `영상 업로드 (0)` 에서 `(1)`로 바뀌지 않았다면 이 문제가 발생한 것입니다.
 
-<img width="400" alt="The upload button still shows (0) after an upload attempt" src="https://github.com/user-attachments/assets/f7e4f134-8c88-466c-94ca-195c805a81ca">
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/42a0cded-089b-465e-9644-75c3e97b7eea" />
+
 
 #### 🔍 원인 분석
 
@@ -525,7 +526,7 @@ except IndexError:
 이제 업로드 위젯을 사용하지 않습니다.
 
 1.  **파일 직접 업로드**: 노트북 왼쪽의 **파일 탐색기** 창에서 **업로드 아이콘(↑)**을 눌러 처리할 영상을 직접 업로드합니다.
-<img width="560" height="594" alt="image" src="https://github.com/user-attachments/assets/0648d6b6-1fbb-44df-b3b0-e6e2b717ab7a" />
+<img width="360" height="394" alt="image" src="https://github.com/user-attachments/assets/0648d6b6-1fbb-44df-b3b0-e6e2b717ab7a" />
 
 3.  **최종 처리 코드 실행**: 기존의 5번, 6번 셀은 무시합니다. 아래 코드를 **새로운 셀**에 붙여넣고, `video_filename` 변수에 방금 업로드한 파일의 정확한 이름(왼쪽 상단의 workspace에서 경로 복사)을 입력한 뒤 실행하세요.
 
@@ -590,9 +591,7 @@ except IndexError:
     ```
 
 > 최종 영상 출력 결과
-> <img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/06fedfac-a004-4197-952c-b9af38f94c33" />
-
----
+<img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/06fedfac-a004-4197-952c-b9af38f94c33" />
 
 
 
