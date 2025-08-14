@@ -431,7 +431,7 @@ print(f"✅ 데이터셋 다운로드 완료! 경로: {base_data_path}")
 2.  왼쪽 메뉴에서 **[Roboflow API]** 탭을 선택합니다.
 3.  `Private API Key` 섹션에서 본인의 고유 API 키를 복사합니다. 이 키는 외부에 노출되지 않도록 주의해야 합니다.
 
-    <img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/1aa12d1c-b59c-440c-a62c-2c66b8bc7bfe" />
+    <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/1aa12d1c-b59c-440c-a62c-2c66b8bc7bfe" />
 
 #### 2. 노트북에서 API로 다운로드 실행
 아래 코드를 노트북의 새로운 셀에 붙여넣고 실행하면, 데이터셋이 자동으로 다운로드 및 압축 해제됩니다.
