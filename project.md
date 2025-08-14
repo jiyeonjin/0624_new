@@ -169,7 +169,7 @@
 - **추론 코드**: 새로운 이미지에서 차선을 찾는 코드
 
 
-#### 실제 프로젝트 코드 분석 1
+#### ✅ 실제 프로젝트 코드 분석 1
 
 ```python
 import os
@@ -230,7 +230,66 @@ for split in ['train', 'valid', 'test']:
 
 이 코드는 **데이터 전처리의 첫 번째 단계**로, 이후 모든 학습 과정의 기반이 됩니다!
 
-#### 실제 프로젝트 코드 분석 2
+#### ✅ 실제 프로젝트 코드 분석 2
+
+
+```python
+import os
+import cv2
+import numpy as np
+from torch.utils.data import Dataset, DataLoader
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+
+class LaneSegmentationDataset(Dataset):
+    def __init__(self, image_dir, mask_dir, transform=None):
+        self.image_dir = image_dir         # 원본 이미지 폴더 경로
+        self.mask_dir = mask_dir           # 마스크 이미지 폴더 경로
+        self.transform = transform         # 데이터 증강 설정
+        self.images = sorted(os.listdir(image_dir))   # 이미지 파일 리스트
+        self.masks = sorted(os.listdir(mask_dir))     # 마스크 파일 리스트
+    
+    def __len__(self):
+        return len(self.images)
+    
+    def __getitem__(self, idx):
+        # 파일 경로 생성
+        img_path = os.path.join(self.image_dir, self.images[idx])
+        mask_path = os.path.join(self.mask_dir, self.masks[idx])
+        
+        # 이미지 불러오기 (BGR → RGB 변환)
+        image = cv2.imread(img_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # 마스크 불러오기 (그레이스케일)
+        mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+        
+        # 크기가 다르면 마스크를 이미지 크기에 맞춤
+        if image.shape[:2] != mask.shape[:2]:
+            mask = cv2.resize(mask, (image.shape[1], image.shape[0]), 
+                            interpolation=cv2.INTER_NEAREST)
+        
+        # 마스크 이진화: 0이 아닌 모든 값을 차선(1)으로 변환
+        mask = (mask != 0).astype('float32')
+        
+        # 데이터 증강 적용
+        if self.transform:
+            augmented = self.transform(image=image, mask=mask)
+            image = augmented['image']
+            mask = augmented['mask']
+        
+        # 마스크에 채널 차원 추가 후 반환
+        return image, mask.unsqueeze(0)
+```
+
+### 코드 상세 분석 (주요 기능 설명)
+- 차선 분할(Lane Segmentation) AI 모델 학습을 위한 PyTorch 데이터셋 클래스입니다.
+- 🖼️ **이미지 & 마스크 로드**: 원본 도로 이미지와 차선 마스크를 자동으로 불러옴
+- 🔄 **자동 크기 조정**: 이미지와 마스크 크기가 다를 때 자동으로 맞춤
+- 🎯 **이진화 처리**: 차선(1) vs 배경(0)으로 단순화
+- 🔀 **데이터 증강**: Albumentations 라이브러리 지원
+
+
 
 
 
