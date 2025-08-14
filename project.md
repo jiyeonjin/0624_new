@@ -111,7 +111,7 @@
 
 ### 🛠️ 5단계: 데이터셋 다운로드
 1. **Image and Annotation Format**에서 **"semantic segmentation masks"** 선택
- <img width="1587" height="826" alt="image" src="https://github.com/user-attachments/assets/56d8e0a8-1dd7-4be8-a49f-aebd8baa73f4" />
+ <img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/56d8e0a8-1dd7-4be8-a49f-aebd8baa73f4" />
 2. 원하는 형식으로 데이터셋 export
 3. 로컬 환경으로 computer to zip 다운로드
 
