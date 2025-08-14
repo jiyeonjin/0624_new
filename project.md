@@ -106,7 +106,7 @@
 - **Export Format:** COCO Segmentation
 - **Images:** JPG/PNG
 - **Masks:** PNG (클래스별 색상 구분)
-- **Train/Valid/Test Split:** 70% / 20% / 10% 추천
+- **Train/Valid/Test Split:** 70% / 20% / 10% 추천 
 
 ### 🛠️ 5단계: 데이터셋 다운로드
 1. **Image and Annotation Format**에서 **"semantic segmentation masks"** 선택
